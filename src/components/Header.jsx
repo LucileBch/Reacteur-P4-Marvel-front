@@ -19,4 +19,5 @@ const Header = () => {
   );
 };
 
+// Export component
 export default Header;
