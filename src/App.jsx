@@ -19,6 +19,7 @@ import "./App.css";
 function App() {
   // States
   const [page, setPage] = useState(1);
+  const [skip, setSkip] = useState(0);
 
   return (
     <Router>
@@ -27,11 +28,25 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/characters"
-          element={<Characters page={page} setPage={setPage} />}
+          element={
+            <Characters
+              page={page}
+              setPage={setPage}
+              skip={skip}
+              setSkip={setSkip}
+            />
+          }
         />
         <Route
           path="/comics"
-          element={<Comics page={page} setPage={setPage} />}
+          element={
+            <Comics
+              page={page}
+              setPage={setPage}
+              skip={skip}
+              setSkip={setSkip}
+            />
+          }
         />
         <Route path="/comics/:characterId" element={<ComicsByCharacter />} />
 

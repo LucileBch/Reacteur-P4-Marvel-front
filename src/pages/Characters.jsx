@@ -11,7 +11,7 @@ import Card from "../components/Card";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
-const Characters = ({ page, setPage }) => {
+const Characters = ({ page, setPage, skip, setSkip }) => {
   // Fetch API datas with useEffect
   // Check server response
   //    If waiting for datas : display "loading"
@@ -23,12 +23,6 @@ const Characters = ({ page, setPage }) => {
   const limit = data.limit;
   const count = data.count;
   const numberOfPages = Math.ceil(data.count / limit);
-
-  // Set skip when changing page
-  let skip = 0;
-  if (page !== 1) {
-    skip = limit * (page - 1);
-  }
 
   const fetchData = async () => {
     try {
@@ -46,14 +40,19 @@ const Characters = ({ page, setPage }) => {
 
   useEffect(() => {
     fetchData();
-  }, [page]);
+  }, [page, skip]);
 
   // Array of characters
   const charactersArray = data.results;
 
-  // Handle change of page
+  // Handle change of page with skip
   const handlePageChange = (event, value) => {
     setPage(value);
+    if (value !== 1) {
+      setSkip(limit * (value - 1));
+    } else {
+      setSkip(0);
+    }
   };
 
   return (
