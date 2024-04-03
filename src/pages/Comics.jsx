@@ -10,11 +10,21 @@ import Input from "../components/Input";
 // MUI Imports
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import Slider from "@mui/material/Slider";
 
 // Assets and Style Impots
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Comics = ({ page, setPage, skip, setSkip, search, setSearch }) => {
+const Comics = ({
+  page,
+  setPage,
+  skip,
+  setSkip,
+  search,
+  setSearch,
+  limit,
+  setLimit,
+}) => {
   // Fetch API datas with useEffect
   // Check server response
   //    If waiting for datas : display "loading"
@@ -23,19 +33,15 @@ const Comics = ({ page, setPage, skip, setSkip, search, setSearch }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   // Set characters limit display for each page
-  const limit = data.limit;
-  const count = data.count;
   const numberOfPages = Math.ceil(data.count / limit);
 
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/comics?&page=${page}&skip=${skip}&title=${search}`
+        `http://localhost:3000/comics?&page=${page}&skip=${skip}&title=${search}&limit=${limit}`
       );
       setData(data);
       setIsLoading(false);
-
-      console.log("ICI LA DATA", data);
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +49,7 @@ const Comics = ({ page, setPage, skip, setSkip, search, setSearch }) => {
 
   useEffect(() => {
     fetchData();
-  }, [page, skip, search]);
+  }, [page, skip, limit, search]);
 
   // Array of comics
   const comicsArray = data.results;
@@ -58,13 +64,17 @@ const Comics = ({ page, setPage, skip, setSkip, search, setSearch }) => {
     }
   };
 
+  // Handle limit to display
+  const handleLimit = (event, value) => {
+    setLimit(value);
+  };
+
   return (
     <>
       {isLoading === true ? (
         "Loading"
       ) : (
         <main>
-          {" "}
           <section>
             <h1>Les Comics de Marvel</h1>
             <div>
@@ -77,7 +87,22 @@ const Comics = ({ page, setPage, skip, setSkip, search, setSearch }) => {
                 setState={setSearch}
               />
             </div>
+            <div>
+              <Slider
+                defaultValue={100}
+                valueLabelDisplay="auto"
+                step={10}
+                marks
+                min={10}
+                max={100}
+                onChange={(event, value) => {
+                  handleLimit(event, value);
+                }}
+              />
+            </div>
+          </section>
 
+          <section>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
               {comicsArray.map((comic) => {
                 return <Card key={comic._id} element={comic} />;

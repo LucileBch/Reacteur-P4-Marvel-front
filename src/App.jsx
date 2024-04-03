@@ -23,6 +23,7 @@ function App() {
   // States
   const [page, setPage] = useState(1);
   const [skip, setSkip] = useState(0);
+  const [limit, setLimit] = useState(100);
   const [search, setSearch] = useState("");
 
   return (
@@ -38,6 +39,8 @@ function App() {
               setPage={setPage}
               skip={skip}
               setSkip={setSkip}
+              limit={limit}
+              setLimit={setLimit}
               search={search}
               setSearch={setSearch}
             />
@@ -51,13 +54,14 @@ function App() {
               setPage={setPage}
               skip={skip}
               setSkip={setSkip}
+              limit={limit}
+              setLimit={setLimit}
               search={search}
               setSearch={setSearch}
             />
           }
         />
         <Route path="/comics/:characterId" element={<ComicsByCharacter />} />
-
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>
