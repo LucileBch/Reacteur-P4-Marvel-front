@@ -13,13 +13,17 @@ import Error from "./pages/Error";
 // Components Imports
 import Header from "./components/Header";
 
-// Style Imports
+// Assets and Style Imports
 import "./App.css";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+library.add(faMagnifyingGlass);
 
 function App() {
   // States
   const [page, setPage] = useState(1);
   const [skip, setSkip] = useState(0);
+  const [search, setSearch] = useState("");
 
   return (
     <Router>
@@ -34,6 +38,8 @@ function App() {
               setPage={setPage}
               skip={skip}
               setSkip={setSkip}
+              search={search}
+              setSearch={setSearch}
             />
           }
         />
@@ -45,6 +51,8 @@ function App() {
               setPage={setPage}
               skip={skip}
               setSkip={setSkip}
+              search={search}
+              setSearch={setSearch}
             />
           }
         />

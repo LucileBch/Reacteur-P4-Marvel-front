@@ -6,12 +6,16 @@ import axios from "axios";
 
 // Components Imports
 import Card from "../components/Card";
+import Input from "../components/Input";
 
 // MUI Imports
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
-const Characters = ({ page, setPage, skip, setSkip }) => {
+// Assets and Style Impots
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const Characters = ({ page, setPage, skip, setSkip, search, setSearch }) => {
   // Fetch API datas with useEffect
   // Check server response
   //    If waiting for datas : display "loading"
@@ -27,7 +31,7 @@ const Characters = ({ page, setPage, skip, setSkip }) => {
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/characters?page=${page}&skip=${skip}`
+        `http://localhost:3000/characters?page=${page}&skip=${skip}&name=${search}`
       );
       setData(data);
       setIsLoading(false);
@@ -40,7 +44,7 @@ const Characters = ({ page, setPage, skip, setSkip }) => {
 
   useEffect(() => {
     fetchData();
-  }, [page, skip]);
+  }, [page, skip, search]);
 
   // Array of characters
   const charactersArray = data.results;
@@ -61,8 +65,20 @@ const Characters = ({ page, setPage, skip, setSkip }) => {
         "Loading"
       ) : (
         <main>
-          <h1>Les Personnages de Marvel</h1>
+          {" "}
           <section>
+            <h1>Les Personnages de Marvel</h1>
+            <div>
+              <FontAwesomeIcon icon="magnifying-glass" />
+              <Input
+                type="text"
+                placeholder="Rechercher des personnages"
+                name="search"
+                state={search}
+                setState={setSearch}
+              />
+            </div>
+
             <div style={{ display: "flex", flexWrap: "wrap" }}>
               {charactersArray.map((character) => {
                 return (
