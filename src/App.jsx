@@ -27,7 +27,7 @@ function App() {
 
   return (
     <Router>
-      <Header />
+      <Header setSearch={setSearch} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route

@@ -65,7 +65,6 @@ const Characters = ({ page, setPage, skip, setSkip, search, setSearch }) => {
         "Loading"
       ) : (
         <main>
-          {" "}
           <section>
             <h1>Les Personnages de Marvel</h1>
             <div>

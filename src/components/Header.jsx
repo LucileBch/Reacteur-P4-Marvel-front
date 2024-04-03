@@ -2,7 +2,11 @@
 // Packages Imports
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ setSearch }) => {
+  const handleClick = () => {
+    setSearch("");
+  };
+
   return (
     <header>
       <Link to="/">
@@ -10,10 +14,10 @@ const Header = () => {
       </Link>
 
       <Link to="/characters">
-        <button>characters</button>
+        <button onClick={handleClick}>characters</button>
       </Link>
       <Link to="/comics">
-        <button>comics</button>
+        <button onClick={handleClick}>comics</button>
       </Link>
     </header>
   );
