@@ -11,8 +11,6 @@ import Input from "../components/Input";
 // MUI Imports
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import Slider from "@mui/material/Slider";
-
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
