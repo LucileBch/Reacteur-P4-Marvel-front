@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import Characters from "./pages/Characters";
 import Comics from "./pages/Comics";
 import ComicsByCharacter from "./pages/ComicsByCharacter";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
 import Error from "./pages/Error";
 
 // Components Imports
@@ -34,6 +36,7 @@ function App() {
         setSkip={setSkip}
         setLimit={setLimit}
         setSearch={setSearch}
+        setSort={setSort}
       />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -72,6 +75,8 @@ function App() {
           }
         />
         <Route path="/comics/:characterId" element={<ComicsByCharacter />} />
+        <Route path="/user/signup" element={<SignUp />} />
+        <Route path="/user/login" element={<Login />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>

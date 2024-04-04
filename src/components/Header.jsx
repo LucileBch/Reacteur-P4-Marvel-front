@@ -18,12 +18,22 @@ const Header = ({ setPage, setSkip, setLimit, setSearch, setSort }) => {
         <p>LOGO</p>
       </Link>
 
-      <Link to="/characters">
-        <button onClick={handleClick}>characters</button>
-      </Link>
-      <Link to="/comics">
-        <button onClick={handleClick}>comics</button>
-      </Link>
+      <div>
+        <Link to="/characters">
+          <button onClick={handleClick}>characters</button>
+        </Link>
+        <Link to="/comics">
+          <button onClick={handleClick}>comics</button>
+        </Link>
+      </div>
+      <div>
+        <Link to="/user/signup">
+          <button>SIGNUP</button>
+        </Link>
+        <Link to="/user/login">
+          <button>LOGIN</button>
+        </Link>
+      </div>
     </header>
   );
 };
