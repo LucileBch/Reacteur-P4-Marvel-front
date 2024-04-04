@@ -8,6 +8,7 @@ import Card from "../components/Card";
 import Input from "../components/Input";
 
 // MUI Imports
+import CircularProgress from "@mui/material/CircularProgress";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import InputLabel from "@mui/material/InputLabel";
@@ -27,6 +28,8 @@ const Comics = ({
   setSearch,
   limit,
   setLimit,
+  sort,
+  setSort,
 }) => {
   // Fetch API datas with useEffect
   // Check server response
@@ -39,20 +42,51 @@ const Comics = ({
   const numberOfPages = Math.ceil(data.count / limit);
 
   const fetchData = async () => {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:3000/comics?&page=${page}&skip=${skip}&title=${search}&limit=${limit}`
-      );
-      setData(data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
+    if (sort === true) {
+      console.log("je suis déjà dans l'ordre");
+
+      if (page !== 1) {
+        setSkip(limit * (page - 1));
+      }
+
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/comics?skip=${skip}&title=${search}&limit=${limit}`
+        );
+        setData(data);
+        setIsLoading(false);
+
+        console.log("DATA", data);
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (sort === false) {
+      console.log("je ne suis PAS dans l ordre initial");
+      if (page === 1) {
+        setSkip(limit * (numberOfPages - 2) + (data.count % limit));
+      } else if (page === numberOfPages) {
+        setSkip(limit * (numberOfPages - 1));
+      } else {
+        setSkip(limit * (numberOfPages - page));
+      }
+
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/comics?skip=${skip}&title=${search}&limit=${limit}`
+        );
+        setData(data);
+        setIsLoading(false);
+
+        console.log("DATA", data);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   useEffect(() => {
     fetchData();
-  }, [page, skip, limit, search]);
+  }, [page, skip, limit, search, sort]);
 
   // Array of comics
   const comicsArray = data.results;
@@ -60,22 +94,47 @@ const Comics = ({
   // Handle change of page with skip
   const handlePageChange = (event, value) => {
     setPage(value);
-    if (value !== 1) {
-      setSkip(limit * (value - 1));
-    } else {
-      setSkip(0);
+
+    // si je suis dans l'ordre normal
+    if (sort === true) {
+      if (value !== 1) {
+        setSkip(limit * (value - 1));
+      } else {
+        setSkip(0);
+      }
+    } else if (sort === false) {
+      // ordre inversé ==> remettre les condision de skip
+      if (value === 1) {
+        setSkip(limit * (numberOfPages - 2) + (data.count % limit));
+      } else if (value === numberOfPages) {
+        setSkip(limit * (numberOfPages - 1));
+      } else {
+        setSkip(limit * (numberOfPages - value));
+      }
     }
   };
+
+  console.log("SKIIIIP", skip);
+  console.log("PAGE", page);
 
   // Handle limit to display
   const handleLimit = (event) => {
     setLimit(event.target.value);
+    setPage(1);
+  };
+
+  // Handle sort
+  const handleSort = (event) => {
+    setSort(event.target.value);
+    setPage(1);
   };
 
   return (
     <>
       {isLoading === true ? (
-        "Loading"
+        <div>
+          <CircularProgress />
+        </div>
       ) : (
         <main>
           <section>
@@ -90,6 +149,25 @@ const Comics = ({
                 setState={setSearch}
               />
             </div>
+
+            <div>
+              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                <InputLabel id="demo-select-small-label">Sort by</InputLabel>
+                <Select
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  value={sort}
+                  label="sort"
+                  onChange={(event) => {
+                    handleSort(event);
+                  }}
+                >
+                  <MenuItem value={true}>A-Z</MenuItem>
+                  <MenuItem value={false}>Z-A</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+
             <div>
               <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                 <InputLabel id="demo-select-small-label">Affichage</InputLabel>
@@ -114,9 +192,16 @@ const Comics = ({
 
           <section>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
-              {comicsArray.map((comic) => {
-                return <Card key={comic._id} element={comic} />;
-              })}
+              {sort
+                ? comicsArray.map((comic) => {
+                    return <Card key={comic._id} element={comic} />;
+                  })
+                : comicsArray
+                    .slice()
+                    .reverse()
+                    .map((comic) => {
+                      return <Card key={comic._id} element={comic} />;
+                    })}
             </div>
 
             <div>

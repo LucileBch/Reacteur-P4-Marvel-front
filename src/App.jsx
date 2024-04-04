@@ -25,10 +25,16 @@ function App() {
   const [skip, setSkip] = useState(0);
   const [limit, setLimit] = useState(100);
   const [search, setSearch] = useState("");
+  const [sort, setSort] = useState(true);
 
   return (
     <Router>
-      <Header setSearch={setSearch} />
+      <Header
+        setPage={setPage}
+        setSkip={setSkip}
+        setLimit={setLimit}
+        setSearch={setSearch}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -43,6 +49,8 @@ function App() {
               setLimit={setLimit}
               search={search}
               setSearch={setSearch}
+              sort={sort}
+              setSort={setSort}
             />
           }
         />
@@ -58,6 +66,8 @@ function App() {
               setLimit={setLimit}
               search={search}
               setSearch={setSearch}
+              sort={sort}
+              setSort={setSort}
             />
           }
         />

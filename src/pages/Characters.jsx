@@ -29,6 +29,8 @@ const Characters = ({
   setLimit,
   search,
   setSearch,
+  sort,
+  setSort,
 }) => {
   // Fetch API datas with useEffect
   // Check server response
@@ -41,22 +43,51 @@ const Characters = ({
   const numberOfPages = Math.ceil(data.count / limit);
 
   const fetchData = async () => {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:3000/characters?skip=${skip}&name=${search}&limit=${limit}`
-      );
-      setData(data);
-      setIsLoading(false);
+    if (sort === true) {
+      console.log("je suis déjà dans l'ordre");
 
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+      if (page !== 1) {
+        setSkip(limit * (page - 1));
+      }
+
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/characters?skip=${skip}&name=${search}&limit=${limit}`
+        );
+        setData(data);
+        setIsLoading(false);
+
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (sort === false) {
+      console.log("je ne suis PAS dans l ordre initial");
+      if (page === 1) {
+        setSkip(limit * (numberOfPages - 2) + (data.count % limit));
+      } else if (page === numberOfPages) {
+        setSkip(limit * (numberOfPages - 1));
+      } else {
+        setSkip(limit * (numberOfPages - page));
+      }
+
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/characters?skip=${skip}&title=${search}&limit=${limit}`
+        );
+        setData(data);
+        setIsLoading(false);
+
+        console.log("DATA", data);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   useEffect(() => {
     fetchData();
-  }, [page, skip, limit, search]);
+  }, [page, skip, limit, search, sort]);
 
   // Array of characters
   const charactersArray = data.results;
@@ -64,16 +95,39 @@ const Characters = ({
   // Handle change of page with skip
   const handlePageChange = (event, value) => {
     setPage(value);
-    if (value !== 1) {
-      setSkip(limit * (value - 1));
-    } else {
-      setSkip(0);
+
+    // si je suis dans l'ordre normal
+    if (sort === true) {
+      if (value !== 1) {
+        setSkip(limit * (value - 1));
+      } else {
+        setSkip(0);
+      }
+    } else if (sort === false) {
+      // ordre inversé ==> remettre les condision de skip
+      if (value === 1) {
+        setSkip(limit * (numberOfPages - 2) + (data.count % limit));
+      } else if (value === numberOfPages) {
+        setSkip(limit * (numberOfPages - 1));
+      } else {
+        setSkip(limit * (numberOfPages - value));
+      }
     }
   };
+
+  console.log("SKIIIIP", skip);
+  console.log("PAGE", page);
 
   // Handle limit to display
   const handleLimit = (event) => {
     setLimit(event.target.value);
+    setPage(1);
+  };
+
+  // Handle sort
+  const handleSort = (event) => {
+    setSort(event.target.value);
+    setPage(1);
   };
 
   return (
@@ -95,6 +149,24 @@ const Characters = ({
                 state={search}
                 setState={setSearch}
               />
+            </div>
+
+            <div>
+              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                <InputLabel id="demo-select-small-label">Sort by</InputLabel>
+                <Select
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  value={sort}
+                  label="sort"
+                  onChange={(event) => {
+                    handleSort(event);
+                  }}
+                >
+                  <MenuItem value={true}>A-Z</MenuItem>
+                  <MenuItem value={false}>Z-A</MenuItem>
+                </Select>
+              </FormControl>
             </div>
 
             <div>
@@ -121,13 +193,27 @@ const Characters = ({
 
           <section>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
-              {charactersArray.map((character) => {
-                return (
-                  <Link key={character._id} to={`/comics/${character._id}`}>
-                    <Card element={character} />
-                  </Link>
-                );
-              })}
+              {sort
+                ? charactersArray.map((character) => {
+                    return (
+                      <Link key={character._id} to={`/comics/${character._id}`}>
+                        <Card element={character} />
+                      </Link>
+                    );
+                  })
+                : charactersArray
+                    .slice()
+                    .reverse()
+                    .map((character) => {
+                      return (
+                        <Link
+                          key={character._id}
+                          to={`/comics/${character._id}`}
+                        >
+                          <Card element={character} />
+                        </Link>
+                      );
+                    })}
             </div>
 
             <div>

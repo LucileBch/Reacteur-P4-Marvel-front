@@ -2,13 +2,14 @@
 // Packages Imports
 import { Link } from "react-router-dom";
 
-const Header = ({ setPage, setSkip, setLimit, setSearch }) => {
+const Header = ({ setPage, setSkip, setLimit, setSearch, setSort }) => {
   // Handle queries reset
   const handleClick = () => {
     setPage(1);
     setSkip(0);
     setLimit(100);
     setSearch("");
+    setSort(true);
   };
 
   return (
