@@ -10,7 +10,10 @@ import Input from "../components/Input";
 // MUI Imports
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import Slider from "@mui/material/Slider";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 // Assets and Style Impots
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -65,8 +68,8 @@ const Comics = ({
   };
 
   // Handle limit to display
-  const handleLimit = (event, value) => {
-    setLimit(value);
+  const handleLimit = (event) => {
+    setLimit(event.target.value);
   };
 
   return (
@@ -88,17 +91,24 @@ const Comics = ({
               />
             </div>
             <div>
-              <Slider
-                defaultValue={100}
-                valueLabelDisplay="auto"
-                step={10}
-                marks
-                min={10}
-                max={100}
-                onChange={(event, value) => {
-                  handleLimit(event, value);
-                }}
-              />
+              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                <InputLabel id="demo-select-small-label">Affichage</InputLabel>
+                <Select
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  value={limit}
+                  label="limit"
+                  onChange={(event) => {
+                    handleLimit(event);
+                  }}
+                >
+                  <MenuItem value={10}>10</MenuItem>
+                  <MenuItem value={25}>25</MenuItem>
+                  <MenuItem value={50}>50</MenuItem>
+                  <MenuItem value={75}>75</MenuItem>
+                  <MenuItem value={100}>100</MenuItem>
+                </Select>
+              </FormControl>
             </div>
           </section>
 
