@@ -64,8 +64,6 @@ const Comics = ({
       console.log("je ne suis PAS dans l ordre initial");
       if (page === 1) {
         setSkip(limit * (numberOfPages - 2) + (data.count % limit));
-      } else if (page === numberOfPages) {
-        setSkip(limit * (numberOfPages - 1));
       } else {
         setSkip(limit * (numberOfPages - page));
       }
@@ -106,8 +104,6 @@ const Comics = ({
       // ordre inversé ==> remettre les condision de skip
       if (value === 1) {
         setSkip(limit * (numberOfPages - 2) + (data.count % limit));
-      } else if (value === numberOfPages) {
-        setSkip(limit * (numberOfPages - 1));
       } else {
         setSkip(limit * (numberOfPages - value));
       }
