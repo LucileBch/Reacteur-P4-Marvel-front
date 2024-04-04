@@ -80,7 +80,7 @@ function App() {
         />
         <Route path="/comics/:characterId" element={<ComicsByCharacter />} />
         <Route path="/user/signup" element={<SignUp setToken={setToken} />} />
-        <Route path="/user/login" element={<Login />} />
+        <Route path="/user/login" element={<Login setToken={setToken} />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>

@@ -49,7 +49,7 @@ const Header = ({
           <button disabled={token ? true : false}>SIGNUP</button>
         </Link>
         <Link to="/user/login">
-          <button>LOGIN</button>
+          <button disabled={token ? true : false}>LOGIN</button>
         </Link>
 
         <button onClick={handleLogout} disabled={token ? false : true}>
