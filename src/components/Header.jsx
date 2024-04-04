@@ -46,7 +46,7 @@ const Header = ({
       </div>
       <div>
         <Link to="/user/signup">
-          <button>SIGNUP</button>
+          <button disabled={token ? true : false}>SIGNUP</button>
         </Link>
         <Link to="/user/login">
           <button>LOGIN</button>
