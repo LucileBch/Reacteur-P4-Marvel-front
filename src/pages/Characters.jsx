@@ -9,6 +9,7 @@ import Card from "../components/Card";
 import Input from "../components/Input";
 
 // MUI Imports
+import CircularProgress from "@mui/material/CircularProgress";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import InputLabel from "@mui/material/InputLabel";
@@ -42,10 +43,12 @@ const Characters = ({
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/characters?page=${page}&skip=${skip}&name=${search}&limit=${limit}`
+        `http://localhost:3000/characters?skip=${skip}&name=${search}&limit=${limit}`
       );
       setData(data);
       setIsLoading(false);
+
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -76,7 +79,9 @@ const Characters = ({
   return (
     <>
       {isLoading === true ? (
-        "Loading"
+        <div>
+          <CircularProgress />
+        </div>
       ) : (
         <main>
           <section>

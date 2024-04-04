@@ -7,6 +7,9 @@ import axios from "axios";
 // Components Imports
 import Card from "../components/Card";
 
+// MUI Imports
+import CircularProgress from "@mui/material/CircularProgress";
+
 const ComicsByCharacter = () => {
   // Fetch API datas with useEffect
   // Check server response
@@ -45,7 +48,9 @@ const ComicsByCharacter = () => {
   return (
     <>
       {isLoading === true ? (
-        "Loading"
+        <div>
+          <CircularProgress />
+        </div>
       ) : (
         <main>
           <section>
