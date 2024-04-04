@@ -39,6 +39,8 @@ function App() {
         setLimit={setLimit}
         setSearch={setSearch}
         setSort={setSort}
+        token={token}
+        setToken={setToken}
       />
       <Routes>
         <Route path="/" element={<Home />} />

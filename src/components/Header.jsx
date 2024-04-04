@@ -1,8 +1,17 @@
 // ---------- HEADER Component ----------
 // Packages Imports
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
-const Header = ({ setPage, setSkip, setLimit, setSearch, setSort }) => {
+const Header = ({
+  setPage,
+  setSkip,
+  setLimit,
+  setSearch,
+  setSort,
+  token,
+  setToken,
+}) => {
   // Handle queries reset
   const handleClick = () => {
     setPage(1);
@@ -10,6 +19,15 @@ const Header = ({ setPage, setSkip, setLimit, setSearch, setSort }) => {
     setLimit(100);
     setSearch("");
     setSort(true);
+  };
+
+  const navigate = useNavigate();
+
+  // Handle logout
+  const handleLogout = () => {
+    Cookies.remove("userToken");
+    setToken("");
+    navigate("/");
   };
 
   return (
@@ -33,6 +51,10 @@ const Header = ({ setPage, setSkip, setLimit, setSearch, setSort }) => {
         <Link to="/user/login">
           <button>LOGIN</button>
         </Link>
+
+        <button onClick={handleLogout} disabled={token ? false : true}>
+          DECONNEXION
+        </button>
       </div>
     </header>
   );
