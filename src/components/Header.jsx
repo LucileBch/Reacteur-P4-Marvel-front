@@ -52,6 +52,10 @@ const Header = ({
           <button disabled={token ? true : false}>LOGIN</button>
         </Link>
 
+        <Link to="/like">
+          <button disabled={token ? false : true}>FAVORIS</button>
+        </Link>
+
         <button onClick={handleLogout} disabled={token ? false : true}>
           DECONNEXION
         </button>

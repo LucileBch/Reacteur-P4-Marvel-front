@@ -31,6 +31,7 @@ const Characters = ({
   setSearch,
   sort,
   setSort,
+  token,
 }) => {
   // Fetch API datas with useEffect
   // Check server response
@@ -44,8 +45,6 @@ const Characters = ({
 
   const fetchData = async () => {
     if (sort === true) {
-      console.log("je suis déjà dans l'ordre");
-
       if (page !== 1) {
         setSkip(limit * (page - 1));
       }
@@ -62,7 +61,6 @@ const Characters = ({
         console.log(error);
       }
     } else if (sort === false) {
-      console.log("je ne suis PAS dans l ordre initial");
       if (page === 1) {
         setSkip(limit * (numberOfPages - 2) + (data.count % limit));
       } else {
@@ -111,9 +109,6 @@ const Characters = ({
     }
   };
 
-  console.log("SKIIIIP", skip);
-  console.log("PAGE", page);
-
   // Handle limit to display
   const handleLimit = (event) => {
     setLimit(event.target.value);
@@ -124,6 +119,30 @@ const Characters = ({
   const handleSort = (event) => {
     setSort(event.target.value);
     setPage(1);
+  };
+
+  // Handle like
+  const handleLike = async (character) => {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:3000/character/like`,
+        {
+          name: character.name,
+          apiId: character._id,
+          picture: `${character.thumbnail.path}.${character.thumbnail.extension}`,
+          description: character.description,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   return (
@@ -192,9 +211,23 @@ const Characters = ({
               {sort
                 ? charactersArray.map((character) => {
                     return (
-                      <Link key={character._id} to={`/comics/${character._id}`}>
-                        <Card element={character} />
-                      </Link>
+                      <article key={character._id}>
+                        <FontAwesomeIcon
+                          icon="heart"
+                          style={{
+                            position: "absolute",
+                            width: "30px",
+                            height: "30px",
+                          }}
+                          onClick={() => {
+                            handleLike(character);
+                          }}
+                          disabled={token ? true : false}
+                        />
+                        <Link to={`/comics/${character._id}`}>
+                          <Card element={character} />
+                        </Link>
+                      </article>
                     );
                   })
                 : charactersArray

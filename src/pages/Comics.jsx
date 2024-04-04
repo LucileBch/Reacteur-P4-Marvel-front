@@ -43,8 +43,6 @@ const Comics = ({
 
   const fetchData = async () => {
     if (sort === true) {
-      console.log("je suis déjà dans l'ordre");
-
       if (page !== 1) {
         setSkip(limit * (page - 1));
       }
@@ -61,7 +59,6 @@ const Comics = ({
         console.log(error);
       }
     } else if (sort === false) {
-      console.log("je ne suis PAS dans l ordre initial");
       if (page === 1) {
         setSkip(limit * (numberOfPages - 2) + (data.count % limit));
       } else {
@@ -109,9 +106,6 @@ const Comics = ({
       }
     }
   };
-
-  console.log("SKIIIIP", skip);
-  console.log("PAGE", page);
 
   // Handle limit to display
   const handleLimit = (event) => {

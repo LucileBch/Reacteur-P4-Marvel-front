@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Characters from "./pages/Characters";
 import Comics from "./pages/Comics";
 import ComicsByCharacter from "./pages/ComicsByCharacter";
+import Like from "./pages/Like";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
@@ -19,8 +20,12 @@ import Header from "./components/Header";
 // Assets and Style Imports
 import "./App.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-library.add(faMagnifyingGlass);
+import {
+  faMagnifyingGlass,
+  faHeart,
+  faBan,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faMagnifyingGlass, faHeart, faBan);
 
 function App() {
   // States
@@ -58,6 +63,7 @@ function App() {
               setSearch={setSearch}
               sort={sort}
               setSort={setSort}
+              token={token}
             />
           }
         />
@@ -75,12 +81,14 @@ function App() {
               setSearch={setSearch}
               sort={sort}
               setSort={setSort}
+              token={token}
             />
           }
         />
         <Route path="/comics/:characterId" element={<ComicsByCharacter />} />
         <Route path="/user/signup" element={<SignUp setToken={setToken} />} />
         <Route path="/user/login" element={<Login setToken={setToken} />} />
+        <Route path="/like" element={<Like />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>
