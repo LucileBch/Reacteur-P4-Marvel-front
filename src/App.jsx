@@ -2,6 +2,7 @@
 // Packages Imports
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 // Page Imports
 import Home from "./pages/Home";
@@ -28,6 +29,7 @@ function App() {
   const [limit, setLimit] = useState(100);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState(true);
+  const [token, setToken] = useState(Cookies.get("userToken")) || "";
 
   return (
     <Router>
@@ -75,7 +77,7 @@ function App() {
           }
         />
         <Route path="/comics/:characterId" element={<ComicsByCharacter />} />
-        <Route path="/user/signup" element={<SignUp />} />
+        <Route path="/user/signup" element={<SignUp setToken={setToken} />} />
         <Route path="/user/login" element={<Login />} />
         <Route path="*" element={<Error />} />
       </Routes>
