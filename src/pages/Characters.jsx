@@ -121,6 +121,7 @@ const Characters = ({
     setPage(1);
   };
 
+  const portraitFantastic = `portrait_fantastic`; // 168x252px
   // Handle like
   const handleLike = async (character) => {
     try {
@@ -129,7 +130,7 @@ const Characters = ({
         {
           name: character.name,
           apiId: character._id,
-          picture: `${character.thumbnail.path}.${character.thumbnail.extension}`,
+          picture: `${character.thumbnail.path}/${portraitFantastic}.${character.thumbnail.extension}`,
           description: character.description,
         },
         {

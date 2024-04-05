@@ -30,6 +30,7 @@ const Comics = ({
   setLimit,
   sort,
   setSort,
+  token,
 }) => {
   // Fetch API datas with useEffect
   // Check server response
@@ -119,6 +120,31 @@ const Comics = ({
     setPage(1);
   };
 
+  const portraitFantastic = `portrait_fantastic`; // 168x252px
+  // Handle like
+  const handleLike = async (comic) => {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:3000/comic/like`,
+        {
+          title: comic.title,
+          apiId: comic._id,
+          picture: `${comic.thumbnail.path}/${portraitFantastic}.${comic.thumbnail.extension}`,
+          description: comic.description,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
   return (
     <>
       {isLoading === true ? (
@@ -184,7 +210,23 @@ const Comics = ({
             <div style={{ display: "flex", flexWrap: "wrap" }}>
               {sort
                 ? comicsArray.map((comic) => {
-                    return <Card key={comic._id} element={comic} />;
+                    return (
+                      <div key={comic._id}>
+                        <FontAwesomeIcon
+                          icon="heart"
+                          style={{
+                            position: "absolute",
+                            width: "30px",
+                            height: "30px",
+                          }}
+                          onClick={() => {
+                            handleLike(comic);
+                          }}
+                          disabled={token ? true : false}
+                        />
+                        <Card key={comic._id} element={comic} />;
+                      </div>
+                    );
                   })
                 : comicsArray
                     .slice()

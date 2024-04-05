@@ -88,7 +88,7 @@ function App() {
         <Route path="/comics/:characterId" element={<ComicsByCharacter />} />
         <Route path="/user/signup" element={<SignUp setToken={setToken} />} />
         <Route path="/user/login" element={<Login setToken={setToken} />} />
-        <Route path="/like" element={<Like />} />
+        <Route path="/like" element={<Like token={token} />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>

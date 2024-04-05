@@ -12,37 +12,73 @@ import CircularProgress from "@mui/material/CircularProgress";
 // Assets and Style Impots
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Like = () => {
+const Like = ({ token }) => {
   // Fetch API datas with useEffect
   // Check server response
   //    If waiting for datas : display "loading"
   //    Else : display content
-  const [data, setData] = useState({});
+  const [charactersData, setCharactersData] = useState({});
+  const [comicsData, setComicsData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3000/characters/like`);
-      setData(data);
+      const [charactersResponse, comicsResponse] = await Promise.all([
+        axios.get(`http://localhost:3000/characters/like`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+        axios.get(`http://localhost:3000/comics/like`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+      ]);
+      setCharactersData(charactersResponse.data);
+      setComicsData(comicsResponse.data);
       setIsLoading(false);
-
-      console.log("ICI LA DATA ID", data);
     } catch (error) {
       console.log(error);
     }
   };
-
   useEffect(() => {
     fetchData();
   }, []);
 
-  const handleDelete = async (character) => {
+  // Handle delete character from list
+  // Update DB and rerender list updated
+  const handleDeleteCharacters = async (character) => {
     try {
-      const { data } = await axios.delete(
+      await axios.delete(
         `http://localhost:3000/characters/dislike/${character._id}`
       );
 
-      console.log(data.message);
+      const updatedDataCharacters = charactersData.charactersToDisplay.filter(
+        (item) => item._id !== character._id
+      );
+      setCharactersData({
+        ...charactersData,
+        charactersToDisplay: updatedDataCharacters,
+      });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
+  // Handle delete comic from list
+  // Update DB and rerender list updated
+  const handleDeleteComics = async (comic) => {
+    try {
+      await axios.delete(`http://localhost:3000/comics/dislike/${comic._id}`);
+
+      const updatedDataComics = comicsData.comicsToDisplay.filter(
+        (item) => item._id !== comic._id
+      );
+      setComicsData({
+        ...comicsData,
+        comicsToDisplay: updatedDataComics,
+      });
     } catch (error) {
       console.log(error.response.data);
     }
@@ -58,31 +94,51 @@ const Like = () => {
         <main>
           <section>
             <h2>Voici vos personnages favoris</h2>
-            <div>
-              {data.charactersToDisplay.map((character) => {
+            <div style={{ display: "flex" }}>
+              {charactersData.charactersToDisplay.map((character) => {
                 return (
                   <div key={character._id}>
                     <FontAwesomeIcon
                       icon="ban"
                       onClick={() => {
-                        handleDelete(character);
+                        handleDeleteCharacters(character);
                       }}
                     />
                     <article>
                       <h3>{character.name}</h3>
-                      <p>{character.description}</p>
                       <img
                         src={character.picture}
                         alt={`photo de ${character.name}`}
                       />
+                      <p>{character.description}</p>
                     </article>
                   </div>
                 );
               })}
             </div>
           </section>
+
           <section>
             <h2>Voici vos comics favoris</h2>
+            <div style={{ display: "flex" }}>
+              {comicsData.comicsToDisplay.map((comic) => {
+                return (
+                  <div key={comic._id}>
+                    <FontAwesomeIcon
+                      icon="ban"
+                      onClick={() => {
+                        handleDeleteComics(comic);
+                      }}
+                    />
+                    <article>
+                      <h3>{comic.title}</h3>
+                      <img src={comic.picture} alt={`photo de ${comic.name}`} />
+                      <p>{comic.description}</p>
+                    </article>
+                  </div>
+                );
+              })}
+            </div>
           </section>
         </main>
       )}
