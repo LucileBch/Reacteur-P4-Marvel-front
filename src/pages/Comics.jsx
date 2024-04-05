@@ -54,8 +54,6 @@ const Comics = ({
         );
         setData(data);
         setIsLoading(false);
-
-        console.log("DATA", data);
       } catch (error) {
         console.log(error);
       }
@@ -72,8 +70,6 @@ const Comics = ({
         );
         setData(data);
         setIsLoading(false);
-
-        console.log("DATA", data);
       } catch (error) {
         console.log(error);
       }
@@ -91,7 +87,6 @@ const Comics = ({
   const handlePageChange = (event, value) => {
     setPage(value);
 
-    // si je suis dans l'ordre normal
     if (sort === true) {
       if (value !== 1) {
         setSkip(limit * (value - 1));
@@ -99,7 +94,6 @@ const Comics = ({
         setSkip(0);
       }
     } else if (sort === false) {
-      // ordre inversé ==> remettre les condision de skip
       if (value === 1) {
         setSkip(limit * (numberOfPages - 2) + (data.count % limit));
       } else {
@@ -120,8 +114,8 @@ const Comics = ({
     setPage(1);
   };
 
-  const portraitFantastic = `portrait_fantastic`; // 168x252px
   // Handle like
+  const portraitFantastic = `portrait_fantastic`; // 168x252px
   const handleLike = async (comic) => {
     try {
       const { data } = await axios.post(
@@ -138,8 +132,6 @@ const Comics = ({
           },
         }
       );
-
-      console.log(data);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -224,6 +216,7 @@ const Comics = ({
                           }}
                           disabled={token ? true : false}
                         />
+                        <p>{count}</p>
                         <Card key={comic._id} element={comic} />;
                       </div>
                     );

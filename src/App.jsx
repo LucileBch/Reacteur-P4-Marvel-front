@@ -16,6 +16,7 @@ import Error from "./pages/Error";
 
 // Components Imports
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 // Assets and Style Imports
 import "./App.css";
@@ -91,6 +92,7 @@ function App() {
         <Route path="/like" element={<Like token={token} />} />
         <Route path="*" element={<Error />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
