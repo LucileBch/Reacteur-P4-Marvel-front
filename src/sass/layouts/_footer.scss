@@ -2,4 +2,53 @@
 footer {
   background-color: $tertiary-color;
   padding: $top-bottom-padding2;
+  color: $white;
+  font-size: 1.6rem;
+
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    padding: $top-bottom-padding1;
+    font-size: 1.2rem;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+
+  a {
+    color: $white;
+    font-weight: bold;
+  }
+}
+
+.wrapper__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: $top-bottom-padding1;
+
+  .footer__links {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    img {
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+      transform: scale(1);
+      transition: transform 330ms ease-in-out;
+      &:hover {
+        transform: scale(1.2);
+        transition: transform 330ms ease-in-out;
+      }
+    }
+  }
+}
+
+.footer__by {
+  padding: $top-bottom-padding1;
+  text-align: center;
 }

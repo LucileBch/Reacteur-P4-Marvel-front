@@ -262,6 +262,51 @@ header > .container {
 footer {
   background-color: #202020;
   padding: 2rem 0;
+  color: #ffffff;
+  font-size: 1.6rem;
+}
+@media (max-width: 768px) {
+  footer {
+    padding: 1rem 0;
+    font-size: 1.2rem;
+  }
+}
+footer img {
+  width: 30px;
+  height: 30px;
+}
+footer a {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.wrapper__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 1rem 0;
+}
+.wrapper__links .footer__links {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.wrapper__links .footer__links img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 330ms ease-in-out;
+}
+.wrapper__links .footer__links img:hover {
+  transform: scale(1.2);
+  transition: transform 330ms ease-in-out;
+}
+
+.footer__by {
+  padding: 1rem 0;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

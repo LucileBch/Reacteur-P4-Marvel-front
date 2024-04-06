@@ -5,7 +5,6 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 
 // Page Imports
-import Home from "./pages/Home";
 import Characters from "./pages/Characters";
 import Comics from "./pages/Comics";
 import ComicsByCharacter from "./pages/ComicsByCharacter";
@@ -59,9 +58,8 @@ function App() {
         setToken={setToken}
       />
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route
-          path="/characters"
+          path="/"
           element={
             <Characters
               page={page}
