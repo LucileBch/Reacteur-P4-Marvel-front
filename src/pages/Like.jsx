@@ -2,7 +2,7 @@
 // Packages Imports
 import { useState } from "react";
 import { useEffect } from "react";
-// import { Link, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import axios from "axios";
 // import Cookies from "js-cookie";
 
@@ -95,7 +95,7 @@ const Like = ({ token }) => {
     }
   };
 
-  return (
+  return token ? (
     <>
       {isLoading === true ? (
         <div>
@@ -164,6 +164,8 @@ const Like = ({ token }) => {
         </main>
       )}
     </>
+  ) : (
+    <Navigate to="/user/login" />
   );
 };
 
