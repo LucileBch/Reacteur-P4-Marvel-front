@@ -10,9 +10,7 @@ const Footer = () => {
     <footer>
       <div className="container">
         <div className="wrapper__links">
-          <a href="#">
-            <img src={Logo} alt="logo marvel" />
-          </a>
+          <img src={Logo} alt="logo marvel" />
 
           <div className="footer__links">
             <p>FOLLOW MARVEL</p>
