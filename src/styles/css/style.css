@@ -314,6 +314,21 @@ footer a {
   text-decoration: underline;
 }
 
+/* ----- Like page ----- */
+.empty__likes {
+  height: 100vh;
+  background-image: url("/src/assets/img/spiderman.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+}
+.empty__likes .empty__content {
+  color: #ffffff;
+  align-self: center;
+  text-align: center;
+}
+
 /* ----- Error page ----- */
 .error {
   height: 100vh;

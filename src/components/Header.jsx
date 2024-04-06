@@ -81,21 +81,19 @@ const Header = ({
           <nav className="header__navbar">
             <ul>
               <div className="header__navbar--wrapper">
-                <Link to="/characters" className="header__navbar--link">
-                  <li onClick={handleClick}>· CHARACTERS · 🧑🏻‍🎤</li>
+                <Link to="/" className="header__navbar--link">
+                  <li onClick={handleClick}>CHARACTERS 🧑🏻‍🎤</li>
                 </Link>
               </div>
               <div className="header__navbar--wrapper">
                 <Link to="/comics" className="header__navbar--link">
-                  <li onClick={handleClick}>· COMICS · 📚</li>
+                  <li onClick={handleClick}>COMICS 📚</li>
                 </Link>
               </div>
               <div className="header__navbar--wrapper">
                 <Link to="/like" className="header__navbar--link">
                   {/* mettre class disable */}
-                  <li className={`${!token && "btn--hidden"}`}>
-                    · FAVORIS · 💥
-                  </li>
+                  <li className={`${!token && "btn--hidden"}`}>FAVORIS 💥</li>
                 </Link>
               </div>
             </ul>
