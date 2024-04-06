@@ -53,8 +53,6 @@ const Like = ({ token }) => {
     fetchData();
   }, [token]);
 
-  console.log(comicsData, charactersData);
-
   // Handle delete character from list
   // Update DB and rerender list updated
   const handleDeleteCharacters = async (character) => {
@@ -103,35 +101,37 @@ const Like = ({ token }) => {
         </div>
       ) : (
         <>
-          {comicsData.length === undefined &&
-          charactersData.length === undefined ? (
+          {Object.keys(comicsData.comicsToDisplay).length === 0 &&
+          Object.keys(charactersData.charactersToDisplay).length === 0 ? (
             <main className="empty__likes">
               <div className="container empty__content">
-                <h2>PAS DE FAVORIS ENREGISTRÉS...</h2>
+                <h2>NO LIKES...</h2>
               </div>
             </main>
           ) : (
             <main>
               <div className="container">
-                <section>
-                  <h2>Voici vos personnages favoris</h2>
-                  <div style={{ display: "flex" }}>
+                <section className="character__favorite">
+                  <h2>Your favorite characters</h2>
+                  <div className="character__list">
                     {charactersData.charactersToDisplay.map((character) => {
                       return (
                         <div key={character._id}>
-                          <FontAwesomeIcon
-                            icon="ban"
-                            onClick={() => {
-                              handleDeleteCharacters(character);
-                            }}
-                          />
                           <article>
-                            <h3>{character.name}</h3>
                             <img
                               src={character.picture}
                               alt={`photo de ${character.name}`}
                             />
-                            <p>{character.description}</p>
+                            <div className="content-orga">
+                              <h3>{character.name}</h3>
+                              <FontAwesomeIcon
+                                icon="ban"
+                                className="ban"
+                                onClick={() => {
+                                  handleDeleteCharacters(character);
+                                }}
+                              />
+                            </div>
                           </article>
                         </div>
                       );
@@ -139,25 +139,27 @@ const Like = ({ token }) => {
                   </div>
                 </section>
 
-                <section>
-                  <h2>Voici vos comics favoris</h2>
-                  <div style={{ display: "flex" }}>
+                <section className="comic__favorite">
+                  <h2>Your favorite comics</h2>
+                  <div className="comic__list">
                     {comicsData.comicsToDisplay.map((comic) => {
                       return (
                         <div key={comic._id}>
-                          <FontAwesomeIcon
-                            icon="ban"
-                            onClick={() => {
-                              handleDeleteComics(comic);
-                            }}
-                          />
                           <article>
-                            <h3>{comic.title}</h3>
                             <img
                               src={comic.picture}
                               alt={`photo de ${comic.name}`}
                             />
-                            <p>{comic.description}</p>
+                            <div className="content-orga">
+                              <h3>{comic.title}</h3>
+                              <FontAwesomeIcon
+                                className="ban"
+                                icon="ban"
+                                onClick={() => {
+                                  handleDeleteComics(comic);
+                                }}
+                              />
+                            </div>
                           </article>
                         </div>
                       );
@@ -165,6 +167,7 @@ const Like = ({ token }) => {
                   </div>
                 </section>
               </div>
+              <div className="hero-endfav"></div>
             </main>
           )}
         </>

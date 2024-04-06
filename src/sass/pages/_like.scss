@@ -1,4 +1,5 @@
 /* ----- Like page ----- */
+/* If NO LIKES*/
 .empty__likes {
   height: 100vh;
   background-image: url("/src/assets/img/spiderman.png");
@@ -11,5 +12,65 @@
     color: $white;
     align-self: center;
     text-align: center;
+  }
+}
+
+/* If LIKES*/
+.character__favorite,
+.comic__favorite {
+  margin: 30px 0 20px 0;
+  > h2 {
+    margin-bottom: 30px;
+  }
+}
+
+.character__list,
+.comic__list {
+  display: flex;
+  gap: 50px;
+  overflow: hidden;
+  overflow-x: scroll;
+
+  article {
+    width: 200px;
+    // responsive BreakPoint 768px
+    @media (max-width: 768px) {
+      width: 100px;
+    }
+
+    > img {
+      width: 100%;
+      border-radius: 20px 0 20px 0;
+      box-shadow: rgba(231, 37, 44, 0.4) -5px 5px,
+        rgba(231, 37, 44, 0.3) -10px 10px, rgba(231, 37, 44, 0.2) -15px 15px,
+        rgba(231, 37, 44, 0.1) -20px 20px, rgba(231, 37, 44, 0.05) -25px 25px;
+    }
+  }
+}
+
+.content-orga {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  > h3 {
+    font-size: 1.6rem;
+  }
+  > .ban {
+    color: $primary-color;
+    font-size: 2rem;
+  }
+}
+
+.hero-endfav {
+  background-image: url(/src/assets/img/marvel-fav.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
+  // responsive BreakPoint 992px
+  @media (max-width: 992px) {
+    height: 20vh;
   }
 }

@@ -49,6 +49,12 @@
   width: 25%;
   border-radius: 15px 0 15px 0;
   font-size: 1.6rem;
+
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    width: 15%;
+    padding-left: 20px;
+  }
 }
 
 /* display cards */
@@ -114,4 +120,15 @@
   height: 30px;
   top: 0.5rem;
   color: $primary-color;
+}
+
+// responsive BreakPoint 576px
+@media (max-width: 576px) {
+  .MuiOutlinedInput-root {
+    width: 60%;
+  }
+  .MuiFormControl-root {
+    display: flex;
+    justify-content: center;
+  }
 }

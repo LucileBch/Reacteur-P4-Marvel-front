@@ -1,0 +1,93 @@
+/* ----- Comic by charac id page ----- */
+.character__id {
+  display: flex;
+  flex-direction: column;
+  padding: $top-bottom-padding2;
+  border-bottom: 1px dashed $primary-color;
+
+  &--name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    // responsive BreakPoint 768px
+    @media (max-width: 782px) {
+      flex-direction: column;
+    }
+  }
+
+  h1 {
+    color: $primary-color;
+    // responsive BreakPoint 768px
+    @media (max-width: 782px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  img {
+    height: 500px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    // responsive BreakPoint 768px
+    @media (max-width: 782px) {
+      height: 400px;
+    }
+  }
+
+  p {
+    text-align: justify;
+  }
+}
+
+.comics__linked {
+  padding: $top-bottom-padding2;
+  margin-bottom: 50px;
+
+  > h2 {
+    margin-bottom: 20px;
+  }
+}
+.comics__linked--display {
+  display: flex;
+  overflow: hidden;
+  overflow-x: scroll;
+  gap: 30px;
+
+  img {
+    border-radius: 20px 0 20px 0;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  &:hover .comic__title {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.comic__title {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: $primary-color;
+}
+
+.hero-end {
+  background-image: url(/src/assets/img/comicsbycharc.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
+  // responsive BreakPoint 992px
+  @media (max-width: 992px) {
+    height: 20vh;
+  }
+}

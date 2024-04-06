@@ -3,10 +3,12 @@
   outline: none;
   border: none;
   font-size: 1.8rem;
-  background-color: #d3d3d3;
+  background-color: transparent;
+}
 
-  // responsive BreakPoint 768px
-  @media (max-width: 768px) {
-    width: 40%;
+// responsive BreakPoint 768px
+@media (max-width: 768px) {
+  .input::placeholder {
+    color: transparent;
   }
 }

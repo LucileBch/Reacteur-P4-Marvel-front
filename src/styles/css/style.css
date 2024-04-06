@@ -168,14 +168,14 @@ h3 {
   outline: none;
   border: none;
   font-size: 1.8rem;
-  background-color: #d3d3d3;
-}
-@media (max-width: 768px) {
-  .input {
-    width: 40%;
-  }
+  background-color: transparent;
 }
 
+@media (max-width: 768px) {
+  .input::placeholder {
+    color: transparent;
+  }
+}
 /* ----- Card ----- */
 .card__image {
   border-radius: 20px 0 20px 0;
@@ -409,6 +409,12 @@ footer a {
   border-radius: 15px 0 15px 0;
   font-size: 1.6rem;
 }
+@media (max-width: 768px) {
+  .hero__searchbar {
+    width: 15%;
+    padding-left: 20px;
+  }
+}
 
 /* display cards */
 .display__cards {
@@ -467,7 +473,106 @@ footer a {
   color: #e7252c;
 }
 
+@media (max-width: 576px) {
+  .MuiOutlinedInput-root {
+    width: 60%;
+  }
+  .MuiFormControl-root {
+    display: flex;
+    justify-content: center;
+  }
+}
+/* ----- Comic by charac id page ----- */
+.character__id {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  border-bottom: 1px dashed #e7252c;
+}
+.character__id--name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+@media (max-width: 782px) {
+  .character__id--name {
+    flex-direction: column;
+  }
+}
+.character__id h1 {
+  color: #e7252c;
+}
+@media (max-width: 782px) {
+  .character__id h1 {
+    margin-bottom: 20px;
+  }
+}
+.character__id img {
+  height: 500px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+@media (max-width: 782px) {
+  .character__id img {
+    height: 400px;
+  }
+}
+.character__id p {
+  text-align: justify;
+}
+
+.comics__linked {
+  padding: 2rem 0;
+  margin-bottom: 50px;
+}
+.comics__linked > h2 {
+  margin-bottom: 20px;
+}
+
+.comics__linked--display {
+  display: flex;
+  overflow: hidden;
+  overflow-x: scroll;
+  gap: 30px;
+}
+.comics__linked--display img {
+  border-radius: 20px 0 20px 0;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.comics__linked--display:hover .comic__title {
+  opacity: 1;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.comic__title {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #e7252c;
+}
+
+.hero-end {
+  background-image: url(/src/assets/img/comicsbycharc.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+@media (max-width: 992px) {
+  .hero-end {
+    height: 20vh;
+  }
+}
+
 /* ----- Like page ----- */
+/* If NO LIKES*/
 .empty__likes {
   height: 100vh;
   background-image: url("/src/assets/img/spiderman.png");
@@ -480,6 +585,67 @@ footer a {
   color: #ffffff;
   align-self: center;
   text-align: center;
+}
+
+/* If LIKES*/
+.character__favorite,
+.comic__favorite {
+  margin: 30px 0 20px 0;
+}
+.character__favorite > h2,
+.comic__favorite > h2 {
+  margin-bottom: 30px;
+}
+
+.character__list,
+.comic__list {
+  display: flex;
+  gap: 50px;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+.character__list article,
+.comic__list article {
+  width: 200px;
+}
+@media (max-width: 768px) {
+  .character__list article,
+  .comic__list article {
+    width: 100px;
+  }
+}
+.character__list article > img,
+.comic__list article > img {
+  width: 100%;
+  border-radius: 20px 0 20px 0;
+  box-shadow: rgba(231, 37, 44, 0.4) -5px 5px, rgba(231, 37, 44, 0.3) -10px 10px, rgba(231, 37, 44, 0.2) -15px 15px, rgba(231, 37, 44, 0.1) -20px 20px, rgba(231, 37, 44, 0.05) -25px 25px;
+}
+
+.content-orga {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.content-orga > h3 {
+  font-size: 1.6rem;
+}
+.content-orga > .ban {
+  color: #e7252c;
+  font-size: 2rem;
+}
+
+.hero-endfav {
+  background-image: url(/src/assets/img/marvel-fav.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+@media (max-width: 992px) {
+  .hero-endfav {
+    height: 20vh;
+  }
 }
 
 /* ----- Error page ----- */

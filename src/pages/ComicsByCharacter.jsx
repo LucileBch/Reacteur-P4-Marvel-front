@@ -38,7 +38,6 @@ const ComicsByCharacter = () => {
   }, []);
 
   // Size img for Url aspect ratio
-  const portraitMedium = `portrait_medium`; // 100x150px ok
   const portraitFantastic = `portrait_fantastic`; // 168x252px
 
   const comicsArray = data.comics;
@@ -46,27 +45,43 @@ const ComicsByCharacter = () => {
   return (
     <>
       {isLoading === true ? (
-        <div>
-          <CircularProgress />
-        </div>
-      ) : (
         <main>
-          <section>
-            <h1>Le perso {`${data.name}`}</h1>
-            <img
-              src={`${data.thumbnail.path}/${portraitFantastic}.${data.thumbnail.extension}`}
-              alt={`photo de ${data.name}`}
-            />
-            <p>{data.description}</p>
-          </section>
-          <section>
-            <h2>Les Comics dans lesquels il apparaît</h2>
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
-              {comicsArray.map((comic) => {
-                return <Card key={comic._id} element={comic} />;
-              })}
-            </div>
-          </section>
+          <div className="containter">
+            <CircularProgress />
+          </div>
+        </main>
+      ) : (
+        <main className="comicsbyid">
+          <div className="container">
+            <section className="character__id">
+              <div className="character__id--name">
+                <h1>{`${data.name}`}</h1>
+                <img
+                  src={`${data.thumbnail.path}/${portraitFantastic}.${data.thumbnail.extension}`}
+                  alt={`photo de ${data.name}`}
+                />
+              </div>
+              <p>{data.description}</p>
+            </section>
+
+            <section className="comics__linked">
+              <h2>Comics linked :</h2>
+              <div className="comics__linked--display">
+                {comicsArray.map((comic) => {
+                  return (
+                    <div key={comic._id}>
+                      <img
+                        src={`${comic.thumbnail.path}/${portraitFantastic}.${comic.thumbnail.extension}`}
+                        alt={`photo de ${comic.title}`}
+                      />
+                      <p className="comic__title">{comic.title}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          </div>
+          <div className="hero-end"></div>
         </main>
       )}
     </>

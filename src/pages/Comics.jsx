@@ -157,7 +157,7 @@ const Comics = ({
                   <FontAwesomeIcon icon="magnifying-glass" />
                   <Input
                     type="text"
-                    placeholder="Search"
+                    placeholder=""
                     name="search"
                     state={search}
                     setState={setSearch}

@@ -6,9 +6,9 @@ const Error = () => {
   return (
     <main className="error">
       <div className="container error__content">
-        <h1>⛔️ TU ES SUR UNE MAUVAISE PISTE ⛔️</h1>
+        <h1>⛔️ WRONG WAY TO GO ! ⛔️</h1>
         <Link to="/">
-          <p>Marvel t'attends par ICI !</p>
+          <p>Marvel is waiting for you HERE !</p>
         </Link>
       </div>
     </main>
