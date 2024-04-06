@@ -1,8 +1,59 @@
-# React + Vite
+# Reacteur-P4-Marvel-front
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Presentation
 
-Currently, two official plugins are available:
+**Marvel Frontend** made in context of training at [@Le Reacteur](https://github.com/lereacteur) bootcamp.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [x] **React**
+- [x] **Few React Mui** components
+- [ ] **Sass**
+- [ ] **Responsive** : TO BE DONE (BreakPoints 1184px - 1024px - 768px - 568px)
+- [x] Backend **Node JS** : https://github.com/LucileBch/Reacteur-P4-Marvel-back.git
+
+Front Hosted on Netlify : ........
+Backend hosted on NorthFlank : https://site--backend-marvel--mrqlhtl4f2zp.code.run/
+
+## Content
+
+- Pages
+  - Home : path=`/`
+  - SignUp : path=`/user/signup`
+  - Login : path=`/user/login`
+  - Characters : path=`/characters`
+  - Comics : path=`/comics`
+  - ComicsByCharacters : path=`/comics/:characterId`
+  - Like : path=`/like`
+  - Error : path=`*`
+
+## Tech Stack
+
+- React 18
+- React Mui
+- Sass
+
+## Installation
+
+1. Clone the repository :
+
+```bash
+git https://github.com/LucileBch/Reacteur-P4-Marvel-front.git
+```
+
+2. Install dependencies and run (on localhost):
+
+```bash
+yarn
+yarn dev
+```
+
+3. For styling modification and compilation :
+
+```bash
+npm run sass
+```
+
+## Thanks
+
+Thanks to :
+
+- [@Le Reacteur](https://github.com/lereacteur)
