@@ -25,7 +25,7 @@ const Like = ({ token }) => {
     try {
       const [charactersResponse, comicsResponse] = await Promise.all([
         axios.get(
-          `https://site--backend-marvel--mrqlhtl4f2zp.code.run/characters/like`,
+          `https://site--backend-marvel--mrqlhtl4f2zp.code.run/liked-characters`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -33,7 +33,7 @@ const Like = ({ token }) => {
           }
         ),
         axios.get(
-          `https://site--backend-marvel--mrqlhtl4f2zp.code.run/comics/like`,
+          `https://site--backend-marvel--mrqlhtl4f2zp.code.run/liked-comics`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -41,6 +41,7 @@ const Like = ({ token }) => {
           }
         ),
       ]);
+
       setCharactersData(charactersResponse.data);
       setComicsData(comicsResponse.data);
       setIsLoading(false);
@@ -50,7 +51,9 @@ const Like = ({ token }) => {
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [token]);
+
+  console.log(comicsData, charactersData);
 
   // Handle delete character from list
   // Update DB and rerender list updated
@@ -100,54 +103,64 @@ const Like = ({ token }) => {
         </div>
       ) : (
         <main>
-          <section>
-            <h2>Voici vos personnages favoris</h2>
-            <div style={{ display: "flex" }}>
-              {charactersData.charactersToDisplay.map((character) => {
-                return (
-                  <div key={character._id}>
-                    <FontAwesomeIcon
-                      icon="ban"
-                      onClick={() => {
-                        handleDeleteCharacters(character);
-                      }}
-                    />
-                    <article>
-                      <h3>{character.name}</h3>
-                      <img
-                        src={character.picture}
-                        alt={`photo de ${character.name}`}
-                      />
-                      <p>{character.description}</p>
-                    </article>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
+          {comicsData.length === undefined &&
+          charactersData.length === undefined ? (
+            <h2>Pas de favoris enregistrés</h2>
+          ) : (
+            <>
+              <section>
+                <h2>Voici vos personnages favoris</h2>
+                <div style={{ display: "flex" }}>
+                  {charactersData.charactersToDisplay.map((character) => {
+                    return (
+                      <div key={character._id}>
+                        <FontAwesomeIcon
+                          icon="ban"
+                          onClick={() => {
+                            handleDeleteCharacters(character);
+                          }}
+                        />
+                        <article>
+                          <h3>{character.name}</h3>
+                          <img
+                            src={character.picture}
+                            alt={`photo de ${character.name}`}
+                          />
+                          <p>{character.description}</p>
+                        </article>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
 
-          <section>
-            <h2>Voici vos comics favoris</h2>
-            <div style={{ display: "flex" }}>
-              {comicsData.comicsToDisplay.map((comic) => {
-                return (
-                  <div key={comic._id}>
-                    <FontAwesomeIcon
-                      icon="ban"
-                      onClick={() => {
-                        handleDeleteComics(comic);
-                      }}
-                    />
-                    <article>
-                      <h3>{comic.title}</h3>
-                      <img src={comic.picture} alt={`photo de ${comic.name}`} />
-                      <p>{comic.description}</p>
-                    </article>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
+              <section>
+                <h2>Voici vos comics favoris</h2>
+                <div style={{ display: "flex" }}>
+                  {comicsData.comicsToDisplay.map((comic) => {
+                    return (
+                      <div key={comic._id}>
+                        <FontAwesomeIcon
+                          icon="ban"
+                          onClick={() => {
+                            handleDeleteComics(comic);
+                          }}
+                        />
+                        <article>
+                          <h3>{comic.title}</h3>
+                          <img
+                            src={comic.picture}
+                            alt={`photo de ${comic.name}`}
+                          />
+                          <p>{comic.description}</p>
+                        </article>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            </>
+          )}
         </main>
       )}
     </>
