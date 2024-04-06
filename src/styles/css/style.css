@@ -163,10 +163,58 @@ h3 {
   }
 }
 
+/* ----- Input ----- */
+.input {
+  outline: none;
+  border: none;
+  font-size: 1.8rem;
+  background-color: #d3d3d3;
+}
+@media (max-width: 768px) {
+  .input {
+    width: 40%;
+  }
+}
+
+/* ----- Card ----- */
+.card__image {
+  border-radius: 20px 0 20px 0;
+  margin-bottom: 15px;
+  width: 21rem;
+  transform: scale(1);
+  transition: transform 330ms ease-in-out;
+}
+.card__image:hover {
+  transform: scale(1.1);
+  transition: transform 330ms ease-in-out;
+}
+
+.card__content {
+  margin-bottom: 20px;
+  color: #000000;
+}
+.card__content > h2 {
+  margin-bottom: 20px;
+  border-top: 1px dashed #e7252c;
+  padding-top: 10px;
+}
+.card__content > p {
+  padding: 0 10px 0 10px;
+}
+
+.MuiPagination-ul {
+  justify-content: center;
+}
+
 /* ----- HEADER ----- */
 /* ----- Header Globals ----- */
 header {
   background-color: #202020;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 header > .container {
   display: flex;
@@ -312,6 +360,111 @@ footer a {
 }
 .footer__by a:hover {
   text-decoration: underline;
+}
+
+/* ----- Characters/Comic page ----- */
+/* hero */
+.character__hero {
+  background-image: url("/src/assets/img/marvel-team.png");
+  background-size: cover;
+  height: 50vh;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.comic__hero {
+  background-image: url("/src/assets/img/comics-hero.jpg");
+  background-size: cover;
+  height: 50vh;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.hero__content {
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.hero__content > h1 {
+  color: #e7252c;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.research {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sort {
+  display: flex;
+}
+
+.hero__searchbar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 1rem;
+  background-color: #d3d3d3;
+  width: 25%;
+  border-radius: 15px 0 15px 0;
+  font-size: 1.6rem;
+}
+
+/* display cards */
+.display__cards {
+  margin-bottom: 70px;
+}
+
+.container__cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  margin-bottom: 70px;
+}
+@media (max-width: 768px) {
+  .container__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 576px) {
+  .container__cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.card__article {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 20px 0 20px 0;
+  border: 1px dashed #e7252c;
+  background-image: linear-gradient(to top, transparent 50%, #e7252c 50%);
+  background-size: 100% 200%;
+  background-position: bottom;
+  transition: background-position 0.4s ease-in-out;
+}
+.card__article:hover {
+  background-position: top;
+  cursor: pointer;
+}
+@media (max-width: 576px) {
+  .card__article {
+    margin: 0 25px;
+  }
+}
+
+.card__icons {
+  position: absolute;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  top: 0.5rem;
+  color: #e7252c;
 }
 
 /* ----- Like page ----- */

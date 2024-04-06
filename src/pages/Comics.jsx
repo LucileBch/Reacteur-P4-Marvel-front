@@ -140,106 +140,132 @@ const Comics = ({
   return (
     <>
       {isLoading === true ? (
-        <div>
-          <CircularProgress />
-        </div>
+        <main>
+          <div className="container">
+            <CircularProgress />
+          </div>
+        </main>
       ) : (
         <main>
-          <section>
-            <h1>Les Comics de Marvel</h1>
-            <div>
-              <FontAwesomeIcon icon="magnifying-glass" />
-              <Input
-                type="text"
-                placeholder="Rechercher des comics"
-                name="search"
-                state={search}
-                setState={setSearch}
-              />
-            </div>
+          <div className="comic__hero"></div>
+          <div className="container">
+            <section className="hero__content">
+              <h1>MARVEL COMICS</h1>
 
-            <div>
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                <InputLabel id="demo-select-small-label">Sort by</InputLabel>
-                <Select
-                  labelId="demo-select-small-label"
-                  id="demo-select-small"
-                  value={sort}
-                  label="sort"
-                  onChange={(event) => {
-                    handleSort(event);
-                  }}
-                >
-                  <MenuItem value={true}>A-Z</MenuItem>
-                  <MenuItem value={false}>Z-A</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
+              <div className="research">
+                <div className="hero__searchbar">
+                  <FontAwesomeIcon icon="magnifying-glass" />
+                  <Input
+                    type="text"
+                    placeholder="Search"
+                    name="search"
+                    state={search}
+                    setState={setSearch}
+                  />
+                </div>
 
-            <div>
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                <InputLabel id="demo-select-small-label">Affichage</InputLabel>
-                <Select
-                  labelId="demo-select-small-label"
-                  id="demo-select-small"
-                  value={limit}
-                  label="limit"
-                  onChange={(event) => {
-                    handleLimit(event);
-                  }}
-                >
-                  <MenuItem value={10}>10</MenuItem>
-                  <MenuItem value={25}>25</MenuItem>
-                  <MenuItem value={50}>50</MenuItem>
-                  <MenuItem value={75}>75</MenuItem>
-                  <MenuItem value={100}>100</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-          </section>
+                <div className="sort">
+                  <div>
+                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                      <InputLabel id="demo-select-small-label">
+                        Sort by
+                      </InputLabel>
+                      <Select
+                        labelId="demo-select-small-label"
+                        id="demo-select-small"
+                        value={sort}
+                        label="sort"
+                        onChange={(event) => {
+                          handleSort(event);
+                        }}
+                      >
+                        <MenuItem value={true}>A-Z</MenuItem>
+                        <MenuItem value={false}>Z-A</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
 
-          <section>
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
-              {sort
-                ? comicsArray.map((comic) => {
-                    return (
-                      <div key={comic._id}>
-                        <FontAwesomeIcon
-                          icon="heart"
-                          style={{
-                            position: "absolute",
-                            width: "30px",
-                            height: "30px",
-                          }}
-                          onClick={() => {
-                            handleLike(comic);
-                          }}
-                          disabled={token ? true : false}
-                        />
-                        <Card key={comic._id} element={comic} />;
-                      </div>
-                    );
-                  })
-                : comicsArray
-                    .slice()
-                    .reverse()
-                    .map((comic) => {
-                      return <Card key={comic._id} element={comic} />;
-                    })}
-            </div>
+                  <div>
+                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                      <InputLabel id="demo-select-small-label">
+                        Affichage
+                      </InputLabel>
+                      <Select
+                        labelId="demo-select-small-label"
+                        id="demo-select-small"
+                        value={limit}
+                        label="limit"
+                        onChange={(event) => {
+                          handleLimit(event);
+                        }}
+                      >
+                        <MenuItem value={10}>10</MenuItem>
+                        <MenuItem value={25}>25</MenuItem>
+                        <MenuItem value={50}>50</MenuItem>
+                        <MenuItem value={75}>75</MenuItem>
+                        <MenuItem value={100}>100</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-            <div>
-              <Stack spacing={2}>
-                <Pagination
-                  count={numberOfPages}
-                  page={page}
-                  variant="outlined"
-                  shape="rounded"
-                  onChange={handlePageChange}
-                />
-              </Stack>
-            </div>
-          </section>
+            <section className="display__cards">
+              <div className="container__cards">
+                {sort
+                  ? comicsArray.map((comic) => {
+                      return (
+                        <article className="card__article" key={comic._id}>
+                          <FontAwesomeIcon
+                            icon="heart"
+                            className="card__icons"
+                            onClick={() => {
+                              handleLike(comic);
+                            }}
+                            disabled={token ? true : false}
+                          />
+                          <div>
+                            <Card key={comic._id} element={comic} />
+                          </div>
+                        </article>
+                      );
+                    })
+                  : comicsArray
+                      .slice()
+                      .reverse()
+                      .map((comic) => {
+                        return (
+                          <article className="card__article" key={comic._id}>
+                            <FontAwesomeIcon
+                              icon="heart"
+                              className="card__icons"
+                              onClick={() => {
+                                handleLike(comic);
+                              }}
+                              disabled={token ? true : false}
+                            />
+                            <div>
+                              <Card key={comic._id} element={comic} />
+                            </div>
+                          </article>
+                        );
+                      })}
+              </div>
+
+              <div>
+                <Stack spacing={2}>
+                  <Pagination
+                    count={numberOfPages}
+                    page={page}
+                    variant="outlined"
+                    shape="rounded"
+                    onChange={handlePageChange}
+                  />
+                </Stack>
+              </div>
+            </section>
+          </div>
         </main>
       )}
     </>

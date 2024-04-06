@@ -10,11 +10,14 @@
 
 // Components
 @import "./components/buttons";
+@import "./components/input";
+@import "./components/card";
 
 // Layouts
 @import "./layouts/header";
 @import "./layouts/footer";
 
 // Pages
+@import "./pages/characters";
 @import "./pages/like";
 @import "./pages/error";

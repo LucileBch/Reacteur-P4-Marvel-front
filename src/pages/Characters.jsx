@@ -55,8 +55,6 @@ const Characters = ({
         );
         setData(data);
         setIsLoading(false);
-
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -73,8 +71,6 @@ const Characters = ({
         );
         setData(data);
         setIsLoading(false);
-
-        console.log("DATA", data);
       } catch (error) {
         console.log(error);
       }
@@ -92,15 +88,15 @@ const Characters = ({
   const handlePageChange = (event, value) => {
     setPage(value);
 
-    // si je suis dans l'ordre normal
+    // if A-Z order
     if (sort === true) {
       if (value !== 1) {
         setSkip(limit * (value - 1));
       } else {
         setSkip(0);
       }
+      // if Z-A order
     } else if (sort === false) {
-      // ordre inversé ==> remettre les condision de skip
       if (value === 1) {
         setSkip(limit * (numberOfPages - 2) + (data.count % limit));
       } else {
@@ -139,8 +135,6 @@ const Characters = ({
           },
         }
       );
-
-      console.log(data);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -149,115 +143,135 @@ const Characters = ({
   return (
     <>
       {isLoading === true ? (
-        <div>
-          <CircularProgress />
-        </div>
+        <main>
+          <div className="container">
+            <CircularProgress />
+          </div>
+        </main>
       ) : (
         <main>
-          <section>
-            <h1>Les Personnages de Marvel</h1>
-            <div>
-              <FontAwesomeIcon icon="magnifying-glass" />
-              <Input
-                type="text"
-                placeholder="Rechercher des personnages"
-                name="search"
-                state={search}
-                setState={setSearch}
-              />
-            </div>
+          <div className="character__hero"></div>
+          <div className="container">
+            <section className="hero__content">
+              <h1>MARVEL CHARACTERS</h1>
 
-            <div>
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                <InputLabel id="demo-select-small-label">Sort by</InputLabel>
-                <Select
-                  labelId="demo-select-small-label"
-                  id="demo-select-small"
-                  value={sort}
-                  label="sort"
-                  onChange={(event) => {
-                    handleSort(event);
-                  }}
-                >
-                  <MenuItem value={true}>A-Z</MenuItem>
-                  <MenuItem value={false}>Z-A</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
+              <div className="research">
+                <div className="hero__searchbar">
+                  <FontAwesomeIcon icon="magnifying-glass" />
+                  <Input
+                    type="text"
+                    placeholder="Search"
+                    name="search"
+                    state={search}
+                    setState={setSearch}
+                  />
+                </div>
 
-            <div>
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                <InputLabel id="demo-select-small-label">Affichage</InputLabel>
-                <Select
-                  labelId="demo-select-small-label"
-                  id="demo-select-small"
-                  value={limit}
-                  label="limit"
-                  onChange={(event) => {
-                    handleLimit(event);
-                  }}
-                >
-                  <MenuItem value={10}>10</MenuItem>
-                  <MenuItem value={25}>25</MenuItem>
-                  <MenuItem value={50}>50</MenuItem>
-                  <MenuItem value={75}>75</MenuItem>
-                  <MenuItem value={100}>100</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-          </section>
+                <div className="sort">
+                  <div>
+                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                      <InputLabel id="demo-select-small-label">
+                        Sort by
+                      </InputLabel>
+                      <Select
+                        labelId="demo-select-small-label"
+                        id="demo-select-small"
+                        value={sort}
+                        label="sort"
+                        onChange={(event) => {
+                          handleSort(event);
+                        }}
+                      >
+                        <MenuItem value={true}>A-Z</MenuItem>
+                        <MenuItem value={false}>Z-A</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
 
-          <section>
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
-              {sort
-                ? charactersArray.map((character) => {
-                    return (
-                      <article key={character._id}>
-                        <FontAwesomeIcon
-                          icon="heart"
-                          style={{
-                            position: "absolute",
-                            width: "30px",
-                            height: "30px",
-                          }}
-                          onClick={() => {
-                            handleLike(character);
-                          }}
-                          disabled={token ? true : false}
-                        />
-                        <Link to={`/comics/${character._id}`}>
-                          <Card element={character} />
-                        </Link>
-                      </article>
-                    );
-                  })
-                : charactersArray
-                    .slice()
-                    .reverse()
-                    .map((character) => {
+                  <div>
+                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                      <InputLabel id="demo-select-small-label">
+                        Affichage
+                      </InputLabel>
+                      <Select
+                        labelId="demo-select-small-label"
+                        id="demo-select-small"
+                        value={limit}
+                        label="limit"
+                        onChange={(event) => {
+                          handleLimit(event);
+                        }}
+                      >
+                        <MenuItem value={10}>10</MenuItem>
+                        <MenuItem value={25}>25</MenuItem>
+                        <MenuItem value={50}>50</MenuItem>
+                        <MenuItem value={75}>75</MenuItem>
+                        <MenuItem value={100}>100</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="display__cards">
+              <div className="container__cards">
+                {sort
+                  ? charactersArray.map((character) => {
                       return (
-                        <Link
-                          key={character._id}
-                          to={`/comics/${character._id}`}
-                        >
-                          <Card element={character} />
-                        </Link>
+                        <article className="card__article" key={character._id}>
+                          <FontAwesomeIcon
+                            icon="heart"
+                            className="card__icons"
+                            onClick={() => {
+                              handleLike(character);
+                            }}
+                            disabled={token ? true : false}
+                          />
+                          <Link to={`/comics/${character._id}`}>
+                            <Card element={character} />
+                          </Link>
+                        </article>
                       );
-                    })}
-            </div>
+                    })
+                  : charactersArray
+                      .slice()
+                      .reverse()
+                      .map((character) => {
+                        return (
+                          <article
+                            className="card__article"
+                            key={character._id}
+                          >
+                            <FontAwesomeIcon
+                              icon="heart"
+                              className="card__icons"
+                              onClick={() => {
+                                handleLike(character);
+                              }}
+                              disabled={token ? true : false}
+                            />
+                            <Link to={`/comics/${character._id}`}>
+                              <Card element={character} />
+                            </Link>
+                          </article>
+                        );
+                      })}
+              </div>
 
-            <div>
-              <Stack spacing={2}>
-                <Pagination
-                  count={numberOfPages}
-                  page={page}
-                  variant="outlined"
-                  shape="rounded"
-                  onChange={handlePageChange}
-                />
-              </Stack>
-            </div>
-          </section>
+              <div>
+                <Stack spacing={2} className="card__pagination">
+                  <Pagination
+                    count={numberOfPages}
+                    page={page}
+                    variant="outlined"
+                    shape="rounded"
+                    onChange={handlePageChange}
+                  />
+                </Stack>
+              </div>
+            </section>
+          </div>
         </main>
       )}
     </>

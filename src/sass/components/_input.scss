@@ -1,0 +1,12 @@
+/* ----- Input ----- */
+.input {
+  outline: none;
+  border: none;
+  font-size: 1.8rem;
+  background-color: #d3d3d3;
+
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    width: 40%;
+  }
+}

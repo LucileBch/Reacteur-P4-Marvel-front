@@ -8,6 +8,7 @@ const Input = ({ type, placeholder, name, state, setState }) => {
 
   return (
     <input
+      className="input"
       value={state}
       type={type}
       placeholder={placeholder}
