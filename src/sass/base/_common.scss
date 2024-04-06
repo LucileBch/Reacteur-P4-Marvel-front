@@ -1,7 +1,7 @@
 /* ----- Common rules ----- */
 html {
   font-size: 62.5%;
-  font-family: $font, sans-serif;
+  font-family: $main-font, sans-serif;
 }
 
 * {
@@ -9,13 +9,25 @@ html {
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
 
-  // // responsive BreakPoint 1184px
-  // @media (max-width: 1184px) {
-  //   padding: 0 2rem;
-  // }
+  // responsive BreakPoint 1184px
+  @media (max-width: 1184px) {
+    max-width: 1000px;
+  }
+  // responsive BreakPoint 992px
+  @media (max-width: 992px) {
+    max-width: 850px;
+  }
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    max-width: 700px;
+  }
+  // responsive BreakPoint 576px
+  @media (max-width: 576px) {
+    max-width: 380px;
+  }
 }
 
 a {

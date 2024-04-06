@@ -1,0 +1,95 @@
+/* ----- HEADER ----- */
+/* ----- Header Globals ----- */
+header {
+  background-color: $tertiary-color;
+
+  > .container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* ----- Header account ----- */
+.header__account {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $top-bottom-padding2;
+
+  .header__logo {
+    width: 17.5rem;
+    transform: scale(1);
+    transition: transform 330ms ease-in-out;
+
+    // responsive BreakPoint 992px
+    @media (max-width: 992px) {
+      width: 15.5rem;
+    }
+    // responsive BreakPoint 768px
+    @media (max-width: 768px) {
+      width: 13.5rem;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      transition: transform 330ms ease-in-out;
+    }
+  }
+
+  .account__buttons {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+/* ----- Header Navbar----- */
+.header__navbar {
+  align-self: center;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    // responsive BreakPoint 768px
+    @media (max-width: 768px) {
+      gap: 20px;
+    }
+
+    .header__navbar--wrapper {
+      padding: $top-bottom-padding2;
+      border-bottom: 5px solid transparent;
+      transition: border-bottom 330ms ease-in-out;
+      &:hover {
+        @include navbar-link-hover;
+      }
+
+      // responsive BreakPoint 768px
+      @media (max-width: 768px) {
+        padding: $top-bottom-padding1;
+      }
+    }
+
+    .header__navbar--link {
+      color: $white;
+      font-size: 2rem;
+
+      // responsive BreakPoint 1024px
+      @media (max-width: 1024px) {
+        font-size: 1.8rem;
+      }
+      // responsive BreakPoint 992px
+      @media (max-width: 992px) {
+        font-size: 1.6rem;
+      }
+      // responsive BreakPoint 768px
+      @media (max-width: 768px) {
+        font-size: 1.4rem;
+      }
+      // responsive BreakPoint 576px
+      @media (max-width: 576px) {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

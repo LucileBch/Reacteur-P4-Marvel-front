@@ -126,7 +126,7 @@ const Characters = ({
   const handleLike = async (character) => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3000/character/like`,
+        `https://site--backend-marvel--mrqlhtl4f2zp.code.run/character/like`,
         {
           name: character.name,
           apiId: character._id,

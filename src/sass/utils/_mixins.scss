@@ -1,0 +1,6 @@
+/* ----- Mixins ----- */
+// hover link
+@mixin navbar-link-hover {
+  border-bottom: 5px solid $primary-color;
+  transition: border-bottom 330ms ease-in-out;
+}

@@ -28,8 +28,6 @@ const ComicsByCharacter = () => {
       );
       setData(data);
       setIsLoading(false);
-
-      console.log("ICI LA DATA ID", data);
     } catch (error) {
       console.log(error);
     }

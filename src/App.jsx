@@ -25,8 +25,18 @@ import {
   faMagnifyingGlass,
   faHeart,
   faBan,
+  faPowerOff,
+  faLock,
+  faArrowRightToBracket,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faMagnifyingGlass, faHeart, faBan);
+library.add(
+  faMagnifyingGlass,
+  faHeart,
+  faBan,
+  faPowerOff,
+  faLock,
+  faArrowRightToBracket
+);
 
 function App() {
   // States

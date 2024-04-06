@@ -1,15 +1,53 @@
 /* ----- Typography ----- */
+body {
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+}
 
 h1 {
   font-size: 4rem;
   font-weight: bold;
+  line-height: 2.2rem;
+
+  // responsive BreakPoint 1024px
+  @media (max-width: 1024px) {
+    font-size: 3rem;
+  }
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+  // responsive BreakPoint 576px
+  @media (max-width: 576px) {
+    font-size: 1.6rem;
+  }
 }
 
 h2 {
   font-size: 2.6rem;
   font-weight: bold;
+  line-height: 2rem;
+
+  // responsive BreakPoint 1024px
+  @media (max-width: 1024px) {
+    font-size: 2.4rem;
+  }
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+  // responsive BreakPoint 768px
+  @media (max-width: 576px) {
+    font-size: 1.4rem;
+  }
 }
 
 h3 {
   font-size: 2.3rem;
+  line-height: 1.8rem;
 }

@@ -1,0 +1,53 @@
+/* ----- Buttons ----- */
+.btn {
+  border: 2px solid $white;
+  transition: border-bottom 330ms ease-in-out;
+  background-color: transparent;
+  color: $white;
+  font-size: 2rem;
+  padding: $around-padding1;
+  width: 150px;
+  border-radius: 15px 0 15px 0;
+
+  // responsive BreakPoint 1024px
+  @media (max-width: 1024px) {
+    font-size: 1.8rem;
+  }
+  // responsive BreakPoint 992px
+  @media (max-width: 992px) {
+    font-size: 1.6rem;
+  }
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+    width: 50px;
+  }
+  // responsive BreakPoint 576px
+  @media (max-width: 576px) {
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    border-color: $secondary-color;
+    transition: border-bottom 330ms ease-in-out;
+  }
+
+  &--hidden {
+    display: none;
+  }
+}
+
+.btn__icon {
+  display: none;
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    display: inherit;
+  }
+}
+.btn__text {
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    display: none;
+  }
+}

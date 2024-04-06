@@ -1,8 +1,16 @@
 /* ----- Imports ----- */
 // Utils
 @import "./utils/variables";
+@import "./utils/mixins";
 
 // Base
 @import "./base/reset";
 @import "./base/common";
 @import "./base/typography";
+
+// Components
+@import "./components/buttons";
+
+// Layouts
+@import "./layouts/header";
+@import "./layouts/footer";

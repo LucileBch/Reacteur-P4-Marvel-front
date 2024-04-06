@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 
 // Assets Imports
 import Logo from "../assets/img/logo-marvel.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = ({
   setPage,
@@ -35,33 +36,71 @@ const Header = ({
 
   return (
     <header>
-      <Link to="/">
-        <img src={Logo} alt="logo marvel" />
-      </Link>
+      <div className="container">
+        <div className="header__account">
+          <Link to="/">
+            <img src={Logo} alt="logo marvel" className="header__logo" />
+          </Link>
 
-      <div>
-        <Link to="/characters">
-          <button onClick={handleClick}>characters</button>
-        </Link>
-        <Link to="/comics">
-          <button onClick={handleClick}>comics</button>
-        </Link>
-      </div>
-      <div>
-        <Link to="/user/signup">
-          <button disabled={token ? true : false}>SIGNUP</button>
-        </Link>
-        <Link to="/user/login">
-          <button disabled={token ? true : false}>LOGIN</button>
-        </Link>
+          <div className="account__buttons">
+            <Link to="/user/signup">
+              <button
+                disabled={token ? true : false}
+                className={`btn ${token && "btn--hidden"}`}
+              >
+                <span className="btn__text">SIGN-UP</span>
+                <FontAwesomeIcon icon="lock" className="btn__icon" />
+              </button>
+            </Link>
+            <Link to="/user/login">
+              <button
+                disabled={token ? true : false}
+                className={`btn ${token && "btn--hidden"}`}
+              >
+                <span className="btn__text">LOGIN</span>
+                <FontAwesomeIcon
+                  icon="arrow-right-to-bracket"
+                  className="btn__icon"
+                />
+              </button>
+            </Link>
+            <Link>
+              <button
+                onClick={handleLogout}
+                disabled={token ? false : true}
+                className={`btn ${!token && "btn--hidden"}`}
+              >
+                <span className="btn__text">DECONNEXION</span>
+                <FontAwesomeIcon icon="power-off" className="btn__icon" />
+              </button>
+            </Link>
+          </div>
+        </div>
 
-        <Link to="/like">
-          <button disabled={token ? false : true}>FAVORIS</button>
-        </Link>
-
-        <button onClick={handleLogout} disabled={token ? false : true}>
-          DECONNEXION
-        </button>
+        <div>
+          <nav className="header__navbar">
+            <ul>
+              <div className="header__navbar--wrapper">
+                <Link to="/characters" className="header__navbar--link">
+                  <li onClick={handleClick}>· CHARACTERS · 🧑🏻‍🎤</li>
+                </Link>
+              </div>
+              <div className="header__navbar--wrapper">
+                <Link to="/comics" className="header__navbar--link">
+                  <li onClick={handleClick}>· COMICS · 📚</li>
+                </Link>
+              </div>
+              <div className="header__navbar--wrapper">
+                <Link to="/like" className="header__navbar--link">
+                  {/* mettre class disable */}
+                  <li className={`${!token && "btn--hidden"}`}>
+                    · FAVORIS · 💥
+                  </li>
+                </Link>
+              </div>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
   );
