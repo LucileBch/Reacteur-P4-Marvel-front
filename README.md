@@ -8,10 +8,10 @@
 - [x] **Few React Mui** components
 - [ ] **Sass**
 - [ ] **Responsive** : TO BE DONE (BreakPoints 1184px - 1024px - 768px - 568px)
-- [x] Backend **Node JS** [Github]: (https://github.com/LucileBch/Reacteur-P4-Marvel-back.git)
+- [x] Backend **Node JS** [Github](https://github.com/LucileBch/Reacteur-P4-Marvel-back.git)
 
-Front Hosted on [Netlify] : (https://reacteur-training-marvel.netlify.app/) \
-Backend hosted on [NorthFlank] : (https://site--backend-marvel--mrqlhtl4f2zp.code.run/)
+Front Hosted on [Netlify](https://reacteur-training-marvel.netlify.app/) \
+Backend hosted on [NorthFlank](https://site--backend-marvel--mrqlhtl4f2zp.code.run/)
 
 ## Content
 
