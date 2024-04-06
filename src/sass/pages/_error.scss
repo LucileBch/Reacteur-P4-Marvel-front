@@ -1,0 +1,32 @@
+/* ----- Error page ----- */
+.error {
+  height: 100vh;
+  background-image: url("/src/assets/img/marvel-error.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+}
+
+/* ----- Error content ----- */
+.error__content {
+  color: $primary-color;
+  align-self: center;
+  text-align: center;
+
+  > h1 {
+    margin-bottom: 50px;
+  }
+  > a {
+    color: $primary-color;
+    font-size: 3rem;
+    :hover {
+      transform: scale(1.1);
+      transition: transform 330ms ease-in-out;
+    }
+    // responsive BreakPoint 768px
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
+  }
+}

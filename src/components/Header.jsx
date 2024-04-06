@@ -70,7 +70,7 @@ const Header = ({
                 disabled={token ? false : true}
                 className={`btn ${!token && "btn--hidden"}`}
               >
-                <span className="btn__text">DECONNEXION</span>
+                <span className="btn__text">LOGOUT</span>
                 <FontAwesomeIcon icon="power-off" className="btn__icon" />
               </button>
             </Link>

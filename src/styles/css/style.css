@@ -280,6 +280,7 @@ footer a {
   font-weight: bold;
 }
 
+/* ----- Footer Links ----- */
 .wrapper__links {
   display: flex;
   align-items: center;
@@ -304,9 +305,46 @@ footer a {
   transition: transform 330ms ease-in-out;
 }
 
+/* ----- Footer content ----- */
 .footer__by {
   padding: 1rem 0;
   text-align: center;
+}
+.footer__by a:hover {
+  text-decoration: underline;
+}
+
+/* ----- Error page ----- */
+.error {
+  height: 100vh;
+  background-image: url("/src/assets/img/marvel-error.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+}
+
+/* ----- Error content ----- */
+.error__content {
+  color: #e7252c;
+  align-self: center;
+  text-align: center;
+}
+.error__content > h1 {
+  margin-bottom: 50px;
+}
+.error__content > a {
+  color: #e7252c;
+  font-size: 3rem;
+}
+.error__content > a :hover {
+  transform: scale(1.1);
+  transition: transform 330ms ease-in-out;
+}
+@media (max-width: 768px) {
+  .error__content > a {
+    font-size: 1.8rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
