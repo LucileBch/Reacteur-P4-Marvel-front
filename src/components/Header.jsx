@@ -3,6 +3,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
+// Assets Imports
+import Logo from "../assets/img/logo-marvel.svg";
+
 const Header = ({
   setPage,
   setSkip,
@@ -33,7 +36,7 @@ const Header = ({
   return (
     <header>
       <Link to="/">
-        <p>LOGO</p>
+        <img src={Logo} alt="logo marvel" />
       </Link>
 
       <div>

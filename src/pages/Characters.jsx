@@ -51,7 +51,7 @@ const Characters = ({
 
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/characters?skip=${skip}&name=${search}&limit=${limit}`
+          `https://site--backend-marvel--mrqlhtl4f2zp.code.run/characters?skip=${skip}&name=${search}&limit=${limit}`
         );
         setData(data);
         setIsLoading(false);
@@ -69,7 +69,7 @@ const Characters = ({
 
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/characters?skip=${skip}&title=${search}&limit=${limit}`
+          `https://site--backend-marvel--mrqlhtl4f2zp.code.run/characters?skip=${skip}&title=${search}&limit=${limit}`
         );
         setData(data);
         setIsLoading(false);

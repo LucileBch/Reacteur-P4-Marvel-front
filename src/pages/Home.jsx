@@ -1,6 +1,6 @@
 // ---------- HOME Page ----------
 const Home = () => {
-  return <p>Home Page</p>;
+  return <h1>Home Page</h1>;
 };
 
 // Export page

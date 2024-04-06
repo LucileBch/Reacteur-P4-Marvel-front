@@ -50,7 +50,7 @@ const Comics = ({
 
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/comics?skip=${skip}&title=${search}&limit=${limit}`
+          `https://site--backend-marvel--mrqlhtl4f2zp.code.run/comics?skip=${skip}&title=${search}&limit=${limit}`
         );
         setData(data);
         setIsLoading(false);
@@ -66,7 +66,7 @@ const Comics = ({
 
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/comics?skip=${skip}&title=${search}&limit=${limit}`
+          `https://site--backend-marvel--mrqlhtl4f2zp.code.run/comics?skip=${skip}&title=${search}&limit=${limit}`
         );
         setData(data);
         setIsLoading(false);
@@ -216,7 +216,6 @@ const Comics = ({
                           }}
                           disabled={token ? true : false}
                         />
-                        <p>{count}</p>
                         <Card key={comic._id} element={comic} />;
                       </div>
                     );

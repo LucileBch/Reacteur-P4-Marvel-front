@@ -24,16 +24,22 @@ const Like = ({ token }) => {
   const fetchData = async () => {
     try {
       const [charactersResponse, comicsResponse] = await Promise.all([
-        axios.get(`http://localhost:3000/characters/like`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }),
-        axios.get(`http://localhost:3000/comics/like`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }),
+        axios.get(
+          `https://site--backend-marvel--mrqlhtl4f2zp.code.run/characters/like`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        ),
+        axios.get(
+          `https://site--backend-marvel--mrqlhtl4f2zp.code.run/comics/like`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        ),
       ]);
       setCharactersData(charactersResponse.data);
       setComicsData(comicsResponse.data);
@@ -51,7 +57,7 @@ const Like = ({ token }) => {
   const handleDeleteCharacters = async (character) => {
     try {
       await axios.delete(
-        `http://localhost:3000/characters/dislike/${character._id}`
+        `https://site--backend-marvel--mrqlhtl4f2zp.code.run/characters/dislike/${character._id}`
       );
 
       const updatedDataCharacters = charactersData.charactersToDisplay.filter(
@@ -70,7 +76,9 @@ const Like = ({ token }) => {
   // Update DB and rerender list updated
   const handleDeleteComics = async (comic) => {
     try {
-      await axios.delete(`http://localhost:3000/comics/dislike/${comic._id}`);
+      await axios.delete(
+        `https://site--backend-marvel--mrqlhtl4f2zp.code.run/comics/dislike/${comic._id}`
+      );
 
       const updatedDataComics = comicsData.comicsToDisplay.filter(
         (item) => item._id !== comic._id
