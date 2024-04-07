@@ -1,7 +1,6 @@
 // ---------- INPUT Component ----------
-
 const Input = ({ type, placeholder, name, state, setState }) => {
-  // For css
+  // For css className
   const logInput = name !== "search" && "input__log";
 
   // Handle changes on inputs

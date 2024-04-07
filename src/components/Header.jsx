@@ -15,7 +15,6 @@ const Header = ({
   setSort,
   token,
   setToken,
-  errorMessages,
   setErrorMessages,
 }) => {
   // Handle queries reset
@@ -95,7 +94,6 @@ const Header = ({
               </div>
               <div className="header__navbar--wrapper">
                 <Link to="/like" className="header__navbar--link">
-                  {/* mettre class disable */}
                   <li className={`${!token && "btn--hidden"}`}>FAVORIS 💥</li>
                 </Link>
               </div>

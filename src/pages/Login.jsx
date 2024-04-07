@@ -31,7 +31,7 @@ const Login = ({ setToken }) => {
       navigate("/");
     } catch (error) {
       if (error.response.status === 400 || error.response.status === 401) {
-        setErrorMessage("Email ou mot de passe incorrect ou inexistant.");
+        setErrorMessage("Email or password not existing, one more try !");
       }
     }
   };
@@ -48,7 +48,7 @@ const Login = ({ setToken }) => {
           <Input
             id="email"
             type="email"
-            placeholder="Email"
+            placeholder="wolverine@marvel.com"
             name="email"
             setState={setEmail}
             state={email}
@@ -60,7 +60,7 @@ const Login = ({ setToken }) => {
           <Input
             id="password"
             type="password"
-            placeholder="Password"
+            placeholder="azerty#123="
             name="password"
             setState={setPassword}
             state={password}
@@ -71,7 +71,7 @@ const Login = ({ setToken }) => {
         <Link to="/user/signup" className="log__redirect">
           <p>Your are not in the team ? Be fast and sign up !</p>
         </Link>
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <p className="error__connection">{errorMessage}</p>}
       </div>
     </main>
   );

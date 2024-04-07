@@ -58,7 +58,7 @@ const ComicsByCharacter = () => {
                 <h1>{`${data.name}`}</h1>
                 <img
                   src={`${data.thumbnail.path}/${portraitFantastic}.${data.thumbnail.extension}`}
-                  alt={`photo de ${data.name}`}
+                  alt={`${data.name}`}
                 />
               </div>
               <p>{data.description}</p>
@@ -72,7 +72,7 @@ const ComicsByCharacter = () => {
                     <div key={comic._id}>
                       <img
                         src={`${comic.thumbnail.path}/${portraitFantastic}.${comic.thumbnail.extension}`}
-                        alt={`photo de ${comic.title}`}
+                        alt={`${comic.title}`}
                       />
                       <p className="comic__title">{comic.title}</p>
                     </div>

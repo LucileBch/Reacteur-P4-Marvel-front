@@ -1,5 +1,4 @@
 // ---------- CARD Component ----------
-
 // Props element (either character or comic)
 const Card = ({ element }) => {
   // Size img for Url aspect ratio

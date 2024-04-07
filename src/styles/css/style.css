@@ -766,6 +766,12 @@ form {
   }
 }
 
+.error__connection {
+  color: #e7252c;
+  text-decoration: underline;
+  font-size: 1.6rem;
+}
+
 /* ----- Error page ----- */
 .error {
   height: 100vh;

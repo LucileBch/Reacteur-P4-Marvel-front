@@ -69,17 +69,16 @@ const Like = ({ token }) => {
         charactersToDisplay: updatedDataCharacters,
       });
 
-      const likedCharacters =
-        JSON.parse(localStorage.getItem("likedCharacters")) || [];
-      const updatedLikedCharacters = likedCharacters.filter(
-        (id) => id !== character._id
-      );
-
-      console.log(likedCharacters._id);
-      localStorage.setItem(
-        "likedCharacters",
-        JSON.stringify(updatedLikedCharacters)
-      );
+      // Delete favorite in LS ---NOT WORKING YET
+      // const likedCharacters =
+      //   JSON.parse(localStorage.getItem("likedCharacters")) || [];
+      // const updatedLikedCharacters = likedCharacters.filter(
+      //   (charId) => charId !== character._id
+      // );
+      // localStorage.setItem(
+      //   "likedCharacters",
+      //   JSON.stringify(updatedLikedCharacters)
+      // );
     } catch (error) {
       console.log(error.response.data);
     }
@@ -108,9 +107,11 @@ const Like = ({ token }) => {
   return token ? (
     <>
       {isLoading === true ? (
-        <div>
-          <CircularProgress />
-        </div>
+        <main>
+          <div className="container">
+            <CircularProgress />
+          </div>
+        </main>
       ) : (
         <>
           {Object.keys(comicsData.comicsToDisplay).length === 0 &&

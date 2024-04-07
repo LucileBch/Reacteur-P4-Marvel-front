@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import Input from "../components/Input";
 
 const SignUp = ({ setToken }) => {
+  // States
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +17,7 @@ const SignUp = ({ setToken }) => {
 
   const navigate = useNavigate();
 
+  // Handle user account creation
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -35,11 +37,9 @@ const SignUp = ({ setToken }) => {
       navigate("/");
     } catch (error) {
       if (error.response.status === 409) {
-        setErrorMessage(
-          "Cet email existe déjà, merci de choisir une autre adresse."
-        );
+        setErrorMessage("Please use an other email adress.");
       } else if (error.response.data.message === "Missing parameters") {
-        setErrorMessage("Merci de remplir tous les champs.");
+        setErrorMessage("Make sur to fill all fields !");
       }
     }
   };
@@ -56,7 +56,7 @@ const SignUp = ({ setToken }) => {
           <Input
             id="username"
             type="text"
-            placeholder="Username"
+            placeholder="John Doe"
             name="username"
             setState={setName}
             state={name}
@@ -67,7 +67,7 @@ const SignUp = ({ setToken }) => {
           <Input
             id="email"
             type="email"
-            placeholder="Email"
+            placeholder="wolverine@marvel.com"
             name="email"
             setState={setEmail}
             state={email}
@@ -78,7 +78,7 @@ const SignUp = ({ setToken }) => {
           <Input
             id="password"
             type="password"
-            placeholder="Password"
+            placeholder="azerty#123="
             name="password"
             setState={setPassword}
             state={password}
@@ -89,7 +89,7 @@ const SignUp = ({ setToken }) => {
         <Link to="/user/login" className="log__redirect">
           <p>Already in the team ? It is here to login !</p>
         </Link>
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <p className="error__connection">{errorMessage}</p>}
       </div>
     </main>
   );

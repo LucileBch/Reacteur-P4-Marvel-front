@@ -144,7 +144,8 @@ const Characters = ({
           },
         }
       );
-      console.log(data.message);
+
+      // If character added push characterId in local storage
       if (data.message === "Character added to favorite !") {
         setIsLiked([...isLiked, character._id]);
         const likedCharacters =
@@ -194,7 +195,7 @@ const Characters = ({
                   <FontAwesomeIcon icon="magnifying-glass" />
                   <Input
                     type="text"
-                    placeholder="Search"
+                    placeholder=""
                     name="search"
                     state={search}
                     setState={setSearch}
