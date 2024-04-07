@@ -470,6 +470,15 @@ footer a {
 .card__article:hover .card__content {
   color: #000000;
 }
+.card__article .hello {
+  color: #e7252c;
+  font-weight: bold;
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 15px 0 15px 0;
+  padding: 1rem;
+  z-index: 10;
+}
 @media (max-width: 576px) {
   .card__article {
     margin: 0 25px;
@@ -482,6 +491,10 @@ footer a {
   width: 30px;
   height: 30px;
   top: 0.5rem;
+  color: #767676;
+}
+
+.icon_red {
   color: #e7252c;
 }
 
@@ -644,6 +657,9 @@ footer a {
 .content-orga > .ban {
   color: #e7252c;
   font-size: 2rem;
+}
+.content-orga > .ban:hover {
+  cursor: pointer;
 }
 
 .hero-endfav {

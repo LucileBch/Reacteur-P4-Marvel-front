@@ -45,6 +45,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState(true);
   const [token, setToken] = useState(Cookies.get("userToken")) || "";
+  const [errorMessages, setErrorMessages] = useState({});
 
   return (
     <Router>
@@ -56,6 +57,7 @@ function App() {
         setSort={setSort}
         token={token}
         setToken={setToken}
+        setErrorMessages={setErrorMessages}
       />
       <Routes>
         <Route
@@ -73,6 +75,8 @@ function App() {
               sort={sort}
               setSort={setSort}
               token={token}
+              errorMessages={errorMessages}
+              setErrorMessages={setErrorMessages}
             />
           }
         />
@@ -91,6 +95,8 @@ function App() {
               sort={sort}
               setSort={setSort}
               token={token}
+              errorMessages={errorMessages}
+              setErrorMessages={setErrorMessages}
             />
           }
         />

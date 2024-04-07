@@ -106,6 +106,16 @@
     color: $black;
   }
 
+  .hello {
+    color: $primary-color;
+    font-weight: bold;
+    position: absolute;
+    background-color: $white;
+    border-radius: 15px 0 15px 0;
+    padding: $around-padding1;
+    z-index: 10;
+  }
+
   // responsive BreakPoint 576px
   @media (max-width: 576px) {
     margin: 0 25px;
@@ -118,6 +128,10 @@
   width: 30px;
   height: 30px;
   top: 0.5rem;
+  color: $secondary-color;
+}
+
+.icon_red {
   color: $primary-color;
 }
 

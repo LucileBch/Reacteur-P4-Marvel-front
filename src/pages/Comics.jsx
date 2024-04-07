@@ -31,6 +31,8 @@ const Comics = ({
   sort,
   setSort,
   token,
+  errorMessages,
+  setErrorMessages,
 }) => {
   // Fetch API datas with useEffect
   // Check server response
@@ -38,6 +40,7 @@ const Comics = ({
   //    Else : display content
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isLiked, setIsLiked] = useState([]);
 
   // Set characters limit display for each page
   const numberOfPages = Math.ceil(data.count / limit);
@@ -47,7 +50,7 @@ const Comics = ({
       if (page !== 1) {
         setSkip(limit * (page - 1));
       }
-
+      setErrorMessages("");
       try {
         const { data } = await axios.get(
           `https://site--backend-marvel--mrqlhtl4f2zp.code.run/comics?skip=${skip}&title=${search}&limit=${limit}`
@@ -132,8 +135,21 @@ const Comics = ({
           },
         }
       );
+      if (data.message === "Comic added to favorite !") {
+        setIsLiked([...isLiked, comic._id]);
+      }
     } catch (error) {
-      console.log(error.response.data);
+      if (error.response.data.error === "Unauthorized") {
+        setErrorMessages({
+          ...errorMessages,
+          [comic._id]: "You have to login first",
+        });
+      } else if (error.response.data.message === "Already registered !") {
+        setErrorMessages({
+          ...errorMessages,
+          [comic._id]: "This item is already registered",
+        });
+      }
     }
   };
 
@@ -217,9 +233,16 @@ const Comics = ({
                   ? comicsArray.map((comic) => {
                       return (
                         <article className="card__article" key={comic._id}>
+                          {errorMessages[comic._id] && (
+                            <p className="hello">{errorMessages[comic._id]}</p>
+                          )}
                           <FontAwesomeIcon
                             icon="heart"
-                            className="card__icons"
+                            className={`card__icons ${
+                              isLiked && isLiked.includes(comic._id)
+                                ? "icon_red"
+                                : "not-saved"
+                            }`}
                             onClick={() => {
                               handleLike(comic);
                             }}

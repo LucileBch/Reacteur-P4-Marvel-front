@@ -32,6 +32,8 @@ const Characters = ({
   sort,
   setSort,
   token,
+  errorMessages,
+  setErrorMessages,
 }) => {
   // Fetch API datas with useEffect
   // Check server response
@@ -39,6 +41,7 @@ const Characters = ({
   //    Else : display content
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isLiked, setIsLiked] = useState([]);
 
   // Set characters limit display for each page
   const numberOfPages = Math.ceil(data.count / limit);
@@ -48,7 +51,7 @@ const Characters = ({
       if (page !== 1) {
         setSkip(limit * (page - 1));
       }
-
+      setErrorMessages("");
       try {
         const { data } = await axios.get(
           `https://site--backend-marvel--mrqlhtl4f2zp.code.run/characters?skip=${skip}&name=${search}&limit=${limit}`
@@ -135,10 +138,29 @@ const Characters = ({
           },
         }
       );
+      console.log(data.message);
+      if (data.message === "Character added to favorite !") {
+        setIsLiked([...isLiked, character._id]);
+      }
     } catch (error) {
-      console.log(error.response.data);
+      if (error.response && error.response.data.error === "Unauthorized") {
+        setErrorMessages({
+          ...errorMessages,
+          [character._id]: "You have to login first",
+        });
+      } else if (
+        error.response &&
+        error.response.data.message === "Already registered !"
+      ) {
+        setErrorMessages({
+          ...errorMessages,
+          [character._id]: "This item is already registered",
+        });
+      }
     }
   };
+
+  console.log("ICI", isLiked);
 
   return (
     <>
@@ -220,9 +242,18 @@ const Characters = ({
                   ? charactersArray.map((character) => {
                       return (
                         <article className="card__article" key={character._id}>
+                          {errorMessages[character._id] && (
+                            <p className="hello">
+                              {errorMessages[character._id]}
+                            </p>
+                          )}
                           <FontAwesomeIcon
                             icon="heart"
-                            className="card__icons"
+                            className={`card__icons ${
+                              isLiked && isLiked.includes(character._id)
+                                ? "icon_red"
+                                : "not-saved"
+                            }`}
                             onClick={() => {
                               handleLike(character);
                             }}

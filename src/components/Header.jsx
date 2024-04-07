@@ -15,6 +15,8 @@ const Header = ({
   setSort,
   token,
   setToken,
+  errorMessages,
+  setErrorMessages,
 }) => {
   // Handle queries reset
   const handleClick = () => {
@@ -23,6 +25,7 @@ const Header = ({
     setLimit(100);
     setSearch("");
     setSort(true);
+    setErrorMessages("");
   };
 
   const navigate = useNavigate();

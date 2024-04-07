@@ -58,6 +58,10 @@
   > .ban {
     color: $primary-color;
     font-size: 2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
