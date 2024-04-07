@@ -1,6 +1,9 @@
 // ---------- INPUT Component ----------
 
 const Input = ({ type, placeholder, name, state, setState }) => {
+  // For css
+  const logInput = name !== "search" && "input__log";
+
   // Handle changes on inputs
   const handleChange = (event) => {
     setState(event.target.value);
@@ -8,7 +11,7 @@ const Input = ({ type, placeholder, name, state, setState }) => {
 
   return (
     <input
-      className="input"
+      className={`input ${logInput}`}
       value={state}
       type={type}
       placeholder={placeholder}

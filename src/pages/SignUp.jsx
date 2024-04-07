@@ -46,36 +46,51 @@ const SignUp = ({ setToken }) => {
 
   return (
     <main>
-      <h2>S'inscrire</h2>
-      <form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          placeholder="Nom d'utilisateur"
-          name="username"
-          setState={setName}
-          state={name}
-        />
-        <Input
-          type="email"
-          placeholder="Email"
-          name="email"
-          setState={setEmail}
-          state={email}
-        />
-        <Input
-          type="password"
-          placeholder="Mot de passe"
-          name="password"
-          setState={setPassword}
-          state={password}
-        />
-        <input type="submit" value="S'inscrire" />
-      </form>
+      <div className="hero__log"></div>
+      <div className="container container__log">
+        <h2 className="title__co">Sign Up to join our heros !</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="Username" id="username" className="form__label">
+            Username :
+          </label>
+          <Input
+            id="username"
+            type="text"
+            placeholder="Username"
+            name="username"
+            setState={setName}
+            state={name}
+          />
+          <label htmlFor="Email" id="email" className="form__label">
+            Email :
+          </label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="Email"
+            name="email"
+            setState={setEmail}
+            state={email}
+          />
+          <label htmlFor="Email" id="password" className="form__label">
+            Password :
+          </label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="Password"
+            name="password"
+            setState={setPassword}
+            state={password}
+          />
+          <input type="submit" value="Sign Up !" className="form__submit" />
+        </form>
 
-      <Link to="/user/login">
-        <p>Déjà un compte ? Connecte toi</p>
-      </Link>
-      {errorMessage && <p>{errorMessage}</p>}
+        <Link to="/user/login" className="log__redirect">
+          <p>Already in the team ? It is here to login !</p>
+        </Link>
+        {errorMessage && <p>{errorMessage}</p>}
+      </div>
     </main>
   );
 };

@@ -1,0 +1,93 @@
+/* ----- Signup-Login page ----- */
+.hero__log {
+  background-image: url("/src/assets/img/singup-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 35vh;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  margin-bottom: 50px;
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    height: 23vh;
+  }
+}
+
+.container__log {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.title__co {
+  color: $primary-color;
+  margin-bottom: 50px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-bottom: 50px;
+  gap: 20px;
+  padding: $around-padding2;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  // responsive BreakPoint 992px
+  @media (max-width: 922px) {
+    width: 75%;
+  }
+}
+
+.form__label {
+  font-size: 1.6rem;
+
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+}
+
+.form__submit {
+  border: 3px solid #d3d3d3;
+  border-radius: 20px 0 20px 0;
+  padding: $around-padding2;
+  background-color: $white;
+  color: $secondary-color;
+  font-size: 1.6rem;
+  width: 50%;
+  align-self: center;
+  transition: border-bottom 330ms ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    padding: $around-padding1;
+    font-size: 1.4rem;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+  }
+
+  &:hover {
+    border-color: $primary-color;
+    color: $primary-color;
+    transition: border-bottom 330ms ease-in-out;
+    cursor: pointer;
+  }
+}
+
+.log__redirect {
+  font-size: 1.6rem;
+  text-align: center;
+  padding: $top-bottom-padding2;
+  color: $primary-color;
+
+  // responsive BreakPoint 768px
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+}

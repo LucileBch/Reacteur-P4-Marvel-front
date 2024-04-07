@@ -38,29 +38,41 @@ const Login = ({ setToken }) => {
 
   return (
     <main>
-      <h2>Se connecter</h2>
-      <form onSubmit={handleSubmit}>
-        <Input
-          type="email"
-          placeholder="Email"
-          name="email"
-          setState={setEmail}
-          state={email}
-        />
-        <Input
-          type="password"
-          placeholder="Mot de passe"
-          name="password"
-          setState={setPassword}
-          state={password}
-        />
-        <input type="submit" value="Se connecter" />
-      </form>
+      <div className="hero__log"></div>
+      <div className="container container__log">
+        <h2 className="title__co">Login</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="Email" id="email" className="form__label">
+            Email :
+          </label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="Email"
+            name="email"
+            setState={setEmail}
+            state={email}
+          />
 
-      <Link to="/user/login">
-        <p>Pas encore de compte ? Inscrit toi</p>
-      </Link>
-      {errorMessage && <p>{errorMessage}</p>}
+          <label htmlFor="Email" id="password" className="form__label">
+            Password :
+          </label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="Password"
+            name="password"
+            setState={setPassword}
+            state={password}
+          />
+          <input type="submit" value="Login" className="form__submit" />
+        </form>
+
+        <Link to="/user/signup" className="log__redirect">
+          <p>Your are not in the team ? Be fast and sign up !</p>
+        </Link>
+        {errorMessage && <p>{errorMessage}</p>}
+      </div>
     </main>
   );
 };

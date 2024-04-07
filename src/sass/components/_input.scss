@@ -12,3 +12,14 @@
     color: transparent;
   }
 }
+
+.input__log {
+  border-bottom: 1px solid $primary-color;
+}
+
+@media (max-width: 768px) {
+  .input__log::placeholder {
+    color: $secondary-color;
+    font-size: 1.4rem;
+  }
+}
