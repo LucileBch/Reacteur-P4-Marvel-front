@@ -68,6 +68,18 @@ const Like = ({ token }) => {
         ...charactersData,
         charactersToDisplay: updatedDataCharacters,
       });
+
+      const likedCharacters =
+        JSON.parse(localStorage.getItem("likedCharacters")) || [];
+      const updatedLikedCharacters = likedCharacters.filter(
+        (id) => id !== character._id
+      );
+
+      console.log(likedCharacters._id);
+      localStorage.setItem(
+        "likedCharacters",
+        JSON.stringify(updatedLikedCharacters)
+      );
     } catch (error) {
       console.log(error.response.data);
     }

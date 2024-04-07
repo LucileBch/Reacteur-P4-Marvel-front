@@ -83,6 +83,11 @@ const Comics = ({
     fetchData();
   }, [page, skip, limit, search, sort]);
 
+  useEffect(() => {
+    const likedComics = JSON.parse(localStorage.getItem("likedComics")) || [];
+    setIsLiked(likedComics);
+  }, []);
+
   // Array of comics
   const comicsArray = data.results;
 
@@ -137,6 +142,13 @@ const Comics = ({
       );
       if (data.message === "Comic added to favorite !") {
         setIsLiked([...isLiked, comic._id]);
+
+        const likedComics =
+          JSON.parse(localStorage.getItem("likedComics")) || [];
+        localStorage.setItem(
+          "likedComics",
+          JSON.stringify([...likedComics, comic._id])
+        );
       }
     } catch (error) {
       if (error.response.data.error === "Unauthorized") {

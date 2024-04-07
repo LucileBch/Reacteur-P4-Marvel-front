@@ -84,6 +84,12 @@ const Characters = ({
     fetchData();
   }, [page, skip, limit, search, sort]);
 
+  useEffect(() => {
+    const likedCharacters =
+      JSON.parse(localStorage.getItem("likedCharacters")) || [];
+    setIsLiked(likedCharacters);
+  }, []);
+
   // Array of characters
   const charactersArray = data.results;
 
@@ -141,6 +147,12 @@ const Characters = ({
       console.log(data.message);
       if (data.message === "Character added to favorite !") {
         setIsLiked([...isLiked, character._id]);
+        const likedCharacters =
+          JSON.parse(localStorage.getItem("likedCharacters")) || [];
+        localStorage.setItem(
+          "likedCharacters",
+          JSON.stringify([...likedCharacters, character._id])
+        );
       }
     } catch (error) {
       if (error.response && error.response.data.error === "Unauthorized") {
